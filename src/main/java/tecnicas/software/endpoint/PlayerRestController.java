@@ -1,8 +1,8 @@
-package tecnicas.software.controller;
+package tecnicas.software.endpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tecnicas.software.dao.PlayerRepository;
+import tecnicas.software.repository.PlayerRepository;
 import tecnicas.software.model.Player;
 
 import java.util.List;
@@ -26,10 +26,10 @@ public class PlayerRestController {
         return playerRepository.findAll();
     }
 
-//    @RequestMapping(value = "/team")
-//    public List<Player> getByTeam(@RequestParam(value="name", required = true) String team){
-//        return playerRepository.findByTeam(team);
-//    }
+    @RequestMapping(value = "/team")
+    public List<Player> getByTeam(@RequestParam(value="name", required = true) String team){
+        return playerRepository.findByTeam(team);
+    }
 
     @RequestMapping(value = "/create")
     public List<Player> create(@RequestBody Player player){
@@ -37,7 +37,19 @@ public class PlayerRestController {
         return playerRepository.findAll();
     }
 
-    @RequestMapping(value = "/delete/", method = RequestMethod.DELETE)
+    @RequestMapping(method=RequestMethod.PUT, value="/{id}")
+    public Player updateByNumber(@PathVariable long id, @RequestBody Player player) {
+        Player update = playerRepository.findOne(id);
+        update.setName(player.getName());
+        update.setLastName(player.getLastName());
+        update.setPosition(player.getPosition());
+        update.setNumber(player.getNumber());
+        update.setOnField(player.isOnField());
+        update.setTeam(player.getTeam());
+        return playerRepository.save(update);
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public List<Player> remove(@RequestParam(value="id", required = true) @PathVariable long id){
         playerRepository.delete(id);
         return playerRepository.findAll();
@@ -45,6 +57,6 @@ public class PlayerRestController {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String test(){
-        return "hello word!";
+        return "It works! - Players endpoint";
     }
 }

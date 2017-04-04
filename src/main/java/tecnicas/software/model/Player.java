@@ -11,30 +11,31 @@ public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long player_id;
     private String name;
     private String lastName;
     private String position;
+    private int number;
     private boolean onField;
-//    private Team team;
+    private Team team;
 
     public Player() {}
 
-    public Player(String name, String lastName, String position, boolean onField){
-//            , Team team) {
+    public Player(String name, String lastName, String position,int number, boolean onField, Team team) {
         this.name = name;
         this.lastName = lastName;
         this.position = position;
+        this.number = number;
         this.onField = onField;
-//        this.team = team;
+        this.team = team;
     }
 
-    public long getId() {
-        return id;
+    public long getPlayer_id() {
+        return player_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setPlayer_id(long player_id) {
+        this.player_id = player_id;
     }
 
     public String getName() {
@@ -61,6 +62,14 @@ public class Player {
         this.position = position;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
     public boolean isOnField() {
         return onField;
     }
@@ -69,11 +78,13 @@ public class Player {
         this.onField = onField;
     }
 
-//    public Team getTeam() {
-//        return team;
-//    }
-//
-//    public void setTeam(Team team) {
-//        this.team = team;
-//    }
+    @ManyToOne
+    @JoinColumn(name="team_id")
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 }
