@@ -1,7 +1,5 @@
 package tecnicas.software.model;
 
-import java.util.List;
-
 /**
  * Created by Luis Marrero on 3/4/2017.
  */

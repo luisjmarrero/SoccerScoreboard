@@ -1,21 +1,40 @@
 package tecnicas.software.model;
 
+import javax.persistence.*;
+
 /**
  * Created by Luis Marrero on 3/4/2017.
  */
+@Entity
+@Table(name = "players")
 public class Player {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String name;
     private String lastName;
     private String position;
-    private Team team;
+    private boolean onField;
+//    private Team team;
 
     public Player() {}
 
-    public Player(String name, String lastName, String position, Team team) {
+    public Player(String name, String lastName, String position, boolean onField){
+//            , Team team) {
         this.name = name;
         this.lastName = lastName;
         this.position = position;
-        this.team = team;
+        this.onField = onField;
+//        this.team = team;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -41,4 +60,20 @@ public class Player {
     public void setPosition(String position) {
         this.position = position;
     }
+
+    public boolean isOnField() {
+        return onField;
+    }
+
+    public void setOnField(boolean onField) {
+        this.onField = onField;
+    }
+
+//    public Team getTeam() {
+//        return team;
+//    }
+//
+//    public void setTeam(Team team) {
+//        this.team = team;
+//    }
 }
