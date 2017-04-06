@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
 
 <head>
     <meta charset="UTF-8"/>
@@ -11,139 +13,122 @@
     <!--    <script type="text/javascript" src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>-->
 </head>
 
-<header>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand active" href="#home">FootBoard</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <!--<li class="active"><a href="#">Home</a></li>-->
-                <li><a href="#teams">Equipos</a></li>
-                <li><a href="#history">Historial</a></li>
-                <li><a href="#admin">Administrar</a></li>
-            </ul>
-        </div>
-    </nav>
-</header>
-
 <body>
 
-<div class="rown text-center">
-    <div class="colum">
-        <div class="card">
-            <!--<td><img src="../static/img/fc-barcelona.png" th:src="@{/resources/img/fc-barcelona.png}" class="img-rounded" alt="" width="15%"></td>-->
-            <img src="../static/img/fc-barcelona.png" th:src="@{/img/fc-barcelona.png}"
-                 class="img-rounded" alt="" width="15%"/>
-            <td><b th:text="${date}">90</b></td>
-            <td><b th:if="${date > 90}" th:text="'+ ' + ${extra}">+5</b></td>
-            <!--<td><img src="../static/img/real-madrid.png" th:src="@{/resources/img/real-madrid.png}" class="img-rounded" alt="" width="12%"></td>-->
-            <img src="../static/img/real-madrid.png" th:src="@{/img/real-madrid.png}"
-                 class="img-rounded" alt="" width="12%"/>
-            <!--
-            <br/>
-            <td><b class="text-left" th:text="{$team_a_name}">Equipo A</b></td>
-            <td><p class="text-center">Equipo goles</p></td>
-            <span style="text-align:right;" th:text="{$team_a_name}">Equipo B</span>
--->
-        </div>
-    </div>
+<div th:replace="fragments/header :: header">
 </div>
 
-<div class="container">
-    <ul class="nav nav-tabs nav-justified" role="tablist">
-        <li class="nav-item"><a href="#playbyplay" class="nav-link" role="tab" data-toggle="tab">Play by Play</a></li>
-        <li class="nav-item"><a href="#statics" class="nav-link" role="tab" data-toggle="tab">Statics</a></li>
-        <li class="nav-item"><a href="#linups" class="nav-link" role="tab" data-toggle="tab">Linups</a></li>
-    </ul>
-
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade" id="playbyplay">
-
-            <div class="row text-center">
-                <div class="card">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">1</li>
-                        <li class="list-group-item">2</li>
-                        <li class="list-group-item">3</li>
-                        <li class="list-group-item">4</li>
-
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-        <div role="tabpanel" class="tab-pane active" id="statics">
-            Statics
-        </div>
-        <div role="tabpanel" class="tab-pane fade" id="linups">
-            <br />
-            <div class="col-xs-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading" style="text-align: center"><b th:text="${name_a}">Equipo A</b></div>
-                    <div class="panel-body">
-                        <table class="table table-condensed table-summary table-borderless ">
-                            <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Numero</th>
-                                <th>Posicion</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Lionel Messi</td>
-                                <td>10</td>
-                                <td>Delantero</td>
-                            </tr>
-                            <tr>
-                                <td>Neymar da Silva</td>
-                                <td>11</td>
-                                <td>Delantero</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading" style="text-align: center"><b th:text="${name_b}">Equipo B</b></div>
-                    <div class="panel-body">
-                        <table class="table table-condensed table-summary table-borderless ">
-                            <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Numero</th>
-                                <th>Posicion</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Cristiano Ronaldo</td>
-                                <td>7</td>
-                                <td>Delantero</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+<th:block layout:fragment="content">
+    <div class="rown text-center">
+        <div class="colum">
+            <div class="card">
+                <!--<td><img src="../static/img/fc-barcelona.png" th:src="@{/resources/img/fc-barcelona.png}" class="img-rounded" alt="" width="15%"></td>-->
+                <img src="../static/img/fc-barcelona.png" th:src="@{/img/fc-barcelona.png}"
+                     class="img-rounded" alt="" width="15%"/>
+                <td><b th:text="${minute}">90</b></td>
+                <td><b th:if="${minute > 90}" th:text="'+ ' + ${extra}">+5</b></td>
+                <!--<td><img src="../static/img/real-madrid.png" th:src="@{/resources/img/real-madrid.png}" class="img-rounded" alt="" width="12%"></td>-->
+                <img src="../static/img/real-madrid.png" th:src="@{/img/real-madrid.png}"
+                     class="img-rounded" alt="" width="12%"/>
+                <!--
+                <br/>
+                <td><b class="text-left" th:text="{$team_a_name}">Equipo A</b></td>
+                <td><p class="text-center">Equipo goles</p></td>
+                <span style="text-align:right;" th:text="{$team_a_name}">Equipo B</span>
+    -->
             </div>
         </div>
     </div>
 
-</div>
+    <div class="container">
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+            <li class="nav-item"><a href="#playbyplay" class="nav-link" role="tab" data-toggle="tab">Play by Play</a>
+            </li>
+            <li class="nav-item"><a href="#statics" class="nav-link" role="tab" data-toggle="tab">Statics</a></li>
+            <li class="nav-item"><a href="#linups" class="nav-link" role="tab" data-toggle="tab">Linups</a></li>
+        </ul>
 
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade" id="playbyplay">
 
-<!--<footer class="container" style="position: absolute; bottom:0;background-color: #f5f5f5; width: 100%">-->
-<!--<div class="navbar navbar-fixed-bottom">-->
-<!--<p th:text="'Ultima actualización ' + ${#dates.format(datetime, 'dd MMM yyyy HH:mm')}" class="text-muted text-center">Page was rendered today.</p>-->
-<!--</div>-->
-<!--</footer>-->
-<div th:include="fragments/main :: copy"></div>
+                <div class="row text-center">
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">1</li>
+                            <li class="list-group-item">2</li>
+                            <li class="list-group-item">3</li>
+                            <li class="list-group-item">4</li>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type="text/javascript" src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane active" id="statics">
+                Statics
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="linups">
+                <br/>
+                <div class="col-xs-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="text-align: center"><b th:text="${name_a}">Equipo A</b></div>
+                        <div class="panel-body">
+                            <table class="table table-condensed table-summary table-borderless ">
+                                <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Numero</th>
+                                    <th>Posicion</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Lionel Messi</td>
+                                    <td>10</td>
+                                    <td>Delantero</td>
+                                </tr>
+                                <tr>
+                                    <td>Neymar da Silva</td>
+                                    <td>11</td>
+                                    <td>Delantero</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="text-align: center"><b th:text="${name_b}">Equipo B</b></div>
+                        <div class="panel-body">
+                            <table class="table table-condensed table-summary table-borderless ">
+                                <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Numero</th>
+                                    <th>Posicion</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Cristiano Ronaldo</td>
+                                    <td>7</td>
+                                    <td>Delantero</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+
+</th:block>
 <!--    <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>-->
 </body>
 
