@@ -12,11 +12,11 @@ import java.util.Date;
 @Controller
 public class ViewController {
 
-    @RequestMapping("/")
+    @RequestMapping("/score")
     public String index(Model model){
-        model.addAttribute("tittle", "Soccer ScoreBoard");
+        model.addAttribute("title", "Soccer ScoreBoard");
         model.addAttribute("minute", 85);
         model.addAttribute("datetime", new Date());
-        return "index";
+        return "score";
     }
 }

@@ -12,11 +12,13 @@ public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long team_id;
+    private Integer team_id;
     private String name;
 //    private List<Player> players;
 
-    public Team() {}
+    public Team() {
+        super();
+    }
 
     public Team(String name) {
         this.name = name;
@@ -27,11 +29,11 @@ public class Team {
 //        this.players = players;
 //    }
 
-    public long getTeam_id() {
+    public Integer getTeam_id() {
         return team_id;
     }
 
-    public void setTeam_id(long team_id) {
+    public void setTeam_id(Integer team_id) {
         this.team_id = team_id;
     }
 

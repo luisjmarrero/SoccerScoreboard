@@ -11,7 +11,7 @@ public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long player_id;
+    private Integer player_id;
     private String name;
     private String lastName;
     private String position;
@@ -21,7 +21,9 @@ public class Player {
     @JoinColumn(name = "team_id")
     private Team team;
 
-    public Player() {}
+    public Player() {
+        super();
+    }
 
     public Player(String name, String lastName, String position,int number, boolean onField, Team team) {
         this.name = name;
@@ -32,11 +34,11 @@ public class Player {
         this.team = team;
     }
 
-    public long getPlayer_id() {
+    public Integer getPlayer_id() {
         return player_id;
     }
 
-    public void setPlayer_id(long player_id) {
+    public void setPlayer_id(Integer player_id) {
         this.player_id = player_id;
     }
 

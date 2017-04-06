@@ -1,29 +1,38 @@
 package tecnicas.software.model;
 
+import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Luis Marrero on 3/4/2017.
  */
+@Entity
+@Table(name="games")
 public class Game {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer game_id;
     private String stadio;
+    @ManyToOne
+//    @JoinColumn(name = "team_id", referencedColumnName = "team_a_id")
+    @JoinColumn(name = "team_a_id")
     private Team teamA;
+    @ManyToOne
+//    @JoinColumn(name = "team_id", referencedColumnName = "team_b_id")
+    @JoinColumn(name = "team_b_id")
     private Team teamB;
-    private int goalsA;
-    private int goalsB;
-    private List<Player> linupA;
-    private List<Player> linupB;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startDate;
+    private Date endDate;
 
     public Game() {}
 
-    public Game(String stadio, Team teamA, Team teamB, int goalsA, int goalsB, List<Player> linupA, List<Player> linupB) {
+    public Game(String stadio, Team teamA, Team teamB, int goalsA, int goalsB) {
         this.stadio = stadio;
         this.teamA = teamA;
         this.teamB = teamB;
-        this.goalsA = goalsA;
-        this.goalsB = goalsB;
-        this.linupA = linupA;
-        this.linupB = linupB;
+
     }
 
     public String getStadio() {
@@ -50,35 +59,8 @@ public class Game {
         this.teamB = teamB;
     }
 
-    public int getGoalsA() {
-        return goalsA;
-    }
-
-    public void setGoalsA(int goalsA) {
-        this.goalsA = goalsA;
-    }
-
-    public int getGoalsB() {
-        return goalsB;
-    }
-
-    public void setGoalsB(int goalsB) {
-        this.goalsB = goalsB;
-    }
-
-    public List<Player> getLinupA() {
-        return linupA;
-    }
-
-    public void setLinupA(List<Player> linupA) {
-        this.linupA = linupA;
-    }
-
-    public List<Player> getLinupB() {
-        return linupB;
-    }
-
-    public void setLinupB(List<Player> linupB) {
-        this.linupB = linupB;
-    }
+//    @PrePersist
+//    void createdAt() {
+//        this.startDate = new Date();
+//    }
 }

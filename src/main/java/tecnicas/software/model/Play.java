@@ -1,21 +1,44 @@
 package tecnicas.software.model;
 
+import javax.persistence.*;
+import java.util.Date;
+
 /**
  * Created by Luis Marrero on 3/4/2017.
  */
+@Entity
+@Table(name="plays")
 public class Play {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer play_id;
+    @Enumerated(EnumType.STRING)
     private PlayType type;
+    @ManyToOne
+    @JoinColumn(name = "player_id")
     private Player player;
-    private int minute;
+    private Date date;
     private String commentary;
+    @ManyToOne
+    @JoinColumn(name = "game_id")
+    private Game game;
 
     public Play() {}
 
-    public Play(PlayType type, Player player, int minute, String commentary) {
+    public Play(PlayType type, Player player, Date date, String commentary) {
         this.type = type;
         this.player = player;
-        this.minute = minute;
+        this.date = date;
         this.commentary = commentary;
+    }
+
+    public Integer getPlay_id() {
+        return play_id;
+    }
+
+    public void setPlay_id(Integer play_id) {
+        this.play_id = play_id;
     }
 
     public PlayType getType() {
@@ -34,12 +57,12 @@ public class Play {
         this.player = player;
     }
 
-    public int getMinute() {
-        return minute;
+    public Date getDate() {
+        return date;
     }
 
-    public void setMinute(int minute) {
-        this.minute = minute;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getCommentary() {

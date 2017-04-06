@@ -21,31 +21,32 @@ public class TeamRestController {
         this.teamRepository = teamRepository;
     }
 
-    @GetMapping(value = "/all")
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Team> getAll(){
         return teamRepository.findAll();
     }
 
-    @RequestMapping(value = "/{name}")
-    public List<Team> getByName(@RequestParam(value="name", required = true) String team){
-        return teamRepository.findByName(team);
+    // FIXME - Explota (HTTP Status = 500)
+    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
+    public List<Team> getByName(@PathVariable String team){
+        return teamRepository.findByNameLike(team);
     }
 
-    @RequestMapping(value = "/create")
+    @RequestMapping(value = "/create" , method = RequestMethod.POST)
     public List<Team> create(@RequestBody Team team){
         teamRepository.save(team);
         return teamRepository.findAll();
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/{id}")
-    public Team updateByNumber(@PathVariable long id, @RequestBody Team team) {
+    public Team updateByNumber(@PathVariable Integer id, @RequestBody Team team) {
         Team update = teamRepository.findOne(id);
         update.setName(team.getName());
         return teamRepository.save(update);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public List<Team> remove(@RequestParam(value="id", required = true) @PathVariable long id){
+    public List<Team> remove(@RequestParam(value="id", required = true) @PathVariable Integer id){
         teamRepository.delete(id);
         return teamRepository.findAll();
     }

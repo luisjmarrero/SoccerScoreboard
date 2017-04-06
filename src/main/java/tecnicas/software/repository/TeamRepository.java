@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Luis Marrero on 4/4/2017.
  */
 @Repository
-public interface TeamRepository extends JpaRepository<Team, Long>{
+public interface TeamRepository extends JpaRepository<Team, Integer>{
 
-    List<Team> findByName(String name);
+    List<Team> findByNameLike(String name);
 }

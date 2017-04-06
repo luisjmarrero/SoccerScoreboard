@@ -26,19 +26,24 @@ public class PlayerRestController {
         return playerRepository.findAll();
     }
 
-    @RequestMapping(value = "/team")
-    public List<Player> getByTeam(@RequestParam(value="name", required = true) String team){
-        return playerRepository.findByTeam(team);
+    @RequestMapping(value = "/team/{id}", method = RequestMethod.GET)
+    public List<Player> getByTeam(@PathVariable Integer id){
+        return playerRepository.findByTeam(id);
     }
 
-    @RequestMapping(value = "/create")
+    @RequestMapping(value = "/number/{number}", method = RequestMethod.GET)
+    public List<Player> getByTeam(@PathVariable int number){
+        return playerRepository.findByNumber(number);
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public List<Player> create(@RequestBody Player player){
         playerRepository.save(player);
         return playerRepository.findAll();
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/{id}")
-    public Player updateByNumber(@PathVariable long id, @RequestBody Player player) {
+    public Player updateByNumber(@PathVariable Integer id, @RequestBody Player player) {
         Player update = playerRepository.findOne(id);
         update.setName(player.getName());
         update.setLastName(player.getLastName());
@@ -50,7 +55,7 @@ public class PlayerRestController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public List<Player> remove(@RequestParam(value="id", required = true) @PathVariable long id){
+    public List<Player> remove(@RequestParam(value="id", required = true) @PathVariable Integer id){
         playerRepository.delete(id);
         return playerRepository.findAll();
     }
