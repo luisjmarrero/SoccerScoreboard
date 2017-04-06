@@ -17,6 +17,8 @@ public class Player {
     private String position;
     private int number;
     private boolean onField;
+    @ManyToOne
+    @JoinColumn(name = "team_id")
     private Team team;
 
     public Player() {}
@@ -78,8 +80,6 @@ public class Player {
         this.onField = onField;
     }
 
-    @ManyToOne
-    @JoinColumn(name="team_id")
     public Team getTeam() {
         return team;
     }
