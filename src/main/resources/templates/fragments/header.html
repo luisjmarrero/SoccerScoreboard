@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
 
 <head>
     <meta charset="UTF-8"/>
     <title>FootBoard</title>
-    <!--<meta http-equiv="refresh" content="5" />-->
-    <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
-    <link rel="stylesheet" href="../../static/css/custom.css" th:href="@{/css/custom.css}"/>
+    <link rel="stylesheet" href="../../static/css/bootstrap.css" data-th-href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="../../static/css/custom.css" data-th-href="@{/css/custom.css}"/>
 
     <!--    <script type="text/javascript" src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>-->
 </head>
 
 <header>
-    <div class="navbar navbar-inverse" th:fragment="header">
+    <div class="navbar navbar-inverse" data-th-fragment="header">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand active" href="/home">FootBoard</a>
@@ -21,6 +20,7 @@
                 <!--<li><a href="#teams">Equipos</a></li>-->
                 <li><a href="/history">Historial</a></li>
                 <li><a href="/admin">Administrar</a></li>
+                <li><a href="/aboutus">About Us</a></li>
             </ul>
         </div>
     </div>

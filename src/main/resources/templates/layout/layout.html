@@ -1,28 +1,23 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      th:fragment="page">
+<html>
 
 <head>
     <meta charset="UTF-8"/>
-    <title th:text="${title}">FootBoard</title>
-    <!--<meta http-equiv="refresh" content="5" />-->
-    <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
-    <link rel="stylesheet" href="../../static/css/custom.css" th:href="@{/css/custom.css}"/>
-
+    <title data-th-text="${title}">FootBoard</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.css" data-th-href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="../../static/css/custom.css" data-th-href="@{/css/custom.css}"/>
     <!--    <script type="text/javascript" src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>-->
 </head>
 
 <body>
-<div th:replace="fragments/header :: header">
+<div data-th-replace="fragments/header :: header">
 </div>
 
 <div class="container">
-    <div layout:fragment="content">
+    <div data-th-fragment="content">
         <p>Content goes here...</p>
     </div>
 </div>
-
 
 </body>
 </html>
