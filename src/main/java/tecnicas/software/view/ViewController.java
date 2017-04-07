@@ -27,6 +27,11 @@ public class ViewController {
         return "admin";
     }
 
+    @RequestMapping("/aboutus")
+    public String aboutus(Model model){
+        return "layout";
+    }
+
     @RequestMapping("/score")
     public String score(Model model){
         model.addAttribute("title", "Soccer ScoreBoard");
