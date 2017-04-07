@@ -3,9 +3,8 @@ package tecnicas.software.endpoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tecnicas.software.model.Play;
-import tecnicas.software.model.PlayType;
-import tecnicas.software.repository.PlayRepository;
 import tecnicas.software.repository.PlayerRepository;
+import tecnicas.software.service.PlayService;
 
 import java.util.List;
 
@@ -16,40 +15,36 @@ import java.util.List;
 @RequestMapping(value = {"/play"})
 public class PlayRestController {
 
-    PlayRepository playRepository;
+    PlayService playService;
 
     @Autowired
-    public PlayRestController(PlayRepository playRepository,PlayerRepository playerRepository) {
-        this.playRepository = playRepository;
+    public PlayRestController(PlayService playService,PlayerRepository playerRepository) {
+        this.playService = playService;
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Play> getAll(){
-        return playRepository.findAll();
+        return playService.getAll();
     }
 
     @RequestMapping(value = "/{type}", method = RequestMethod.GET)
     public List<Play> getByType(@PathVariable String type){
-        return playRepository.findByType(type);
+        return playService.getByType(type);
     }
 
     @RequestMapping(value = "/create")
     public List<Play> create(@RequestBody Play player){
-        playRepository.save(player);
-        return playRepository.findAll();
+        return playService.create(player);
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/{id}")
-    public Play updateByNumber(@PathVariable Integer id, @RequestBody Play player) {
-        Play update = playRepository.findOne(id);
-
-        return playRepository.save(update);
+    public Play updateById(@PathVariable Integer id, @RequestBody Play player) {
+        return playService.updateById(id, player);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public List<Play> remove(@RequestParam(value="id", required = true) @PathVariable Integer id){
-        playRepository.delete(id);
-        return playRepository.findAll();
+        return playService.remove(id);
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)

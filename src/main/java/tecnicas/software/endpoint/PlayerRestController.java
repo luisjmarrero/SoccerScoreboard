@@ -2,8 +2,8 @@ package tecnicas.software.endpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tecnicas.software.repository.PlayerRepository;
 import tecnicas.software.model.Player;
+import tecnicas.software.service.PlayerService;
 
 import java.util.List;
 
@@ -14,50 +14,41 @@ import java.util.List;
 @RequestMapping(value = {"/players"})
 public class PlayerRestController {
 
-    PlayerRepository playerRepository;
+    PlayerService playerService;
 
     @Autowired
-    public PlayerRestController(PlayerRepository playerRepository) {
-        this.playerRepository = playerRepository;
+    public PlayerRestController(PlayerService playerService) {
+        this.playerService = playerService;
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Player> getAll(){
-        return playerRepository.findAll();
+        return playerService.getAll();
     }
 
     @RequestMapping(value = "/team/{id}", method = RequestMethod.GET)
     public List<Player> getByTeam(@PathVariable Integer id){
-        return playerRepository.findByTeam(id);
+        return playerService.getByTeam(id);
     }
 
     @RequestMapping(value = "/number/{number}", method = RequestMethod.GET)
-    public List<Player> getByTeam(@PathVariable int number){
-        return playerRepository.findByNumber(number);
+    public List<Player> getByNumber(@PathVariable int number){
+        return playerService.getByNumber(number);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public List<Player> create(@RequestBody Player player){
-        playerRepository.save(player);
-        return playerRepository.findAll();
+        return playerService.create(player);
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/{id}")
     public Player updateByNumber(@PathVariable Integer id, @RequestBody Player player) {
-        Player update = playerRepository.findOne(id);
-        update.setName(player.getName());
-        update.setLastName(player.getLastName());
-        update.setPosition(player.getPosition());
-        update.setNumber(player.getNumber());
-        update.setOnField(player.isOnField());
-        update.setTeam(player.getTeam());
-        return playerRepository.save(update);
+        return playerService.updateByNumber(id, player);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public List<Player> remove(@RequestParam(value="id", required = true) @PathVariable Integer id){
-        playerRepository.delete(id);
-        return playerRepository.findAll();
+        return playerService.remove(id);
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)

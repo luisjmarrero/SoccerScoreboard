@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tecnicas.software.model.Team;
 import tecnicas.software.repository.TeamRepository;
+import tecnicas.software.service.TeamService;
 
 import java.util.List;
 
@@ -14,41 +15,36 @@ import java.util.List;
 @RequestMapping(value = {"/teams"})
 public class TeamRestController {
 
-    TeamRepository teamRepository;
+    TeamService teamService;
 
-    @Autowired
-    public TeamRestController(TeamRepository teamRepository) {
-        this.teamRepository = teamRepository;
+    public TeamRestController(TeamService teamService) {
+        this.teamService = teamService;
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Team> getAll(){
-        return teamRepository.findAll();
+        return teamService.getAll();
     }
 
     // FIXME - Explota (HTTP Status = 500)
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public List<Team> getByName(@PathVariable String team){
-        return teamRepository.findByNameLike(team);
+        return teamService.getByName(team);
     }
 
     @RequestMapping(value = "/create" , method = RequestMethod.POST)
     public List<Team> create(@RequestBody Team team){
-        teamRepository.save(team);
-        return teamRepository.findAll();
+        return teamService.create(team);
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/{id}")
     public Team updateByNumber(@PathVariable Integer id, @RequestBody Team team) {
-        Team update = teamRepository.findOne(id);
-        update.setName(team.getName());
-        return teamRepository.save(update);
+        return teamService.updateByNumber(id, team);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public List<Team> remove(@RequestParam(value="id", required = true) @PathVariable Integer id){
-        teamRepository.delete(id);
-        return teamRepository.findAll();
+        return teamService.remove(id);
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
