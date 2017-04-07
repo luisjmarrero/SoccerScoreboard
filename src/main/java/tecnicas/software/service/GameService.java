@@ -3,6 +3,8 @@ package tecnicas.software.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tecnicas.software.model.Game;
+import tecnicas.software.model.GameMem;
+import tecnicas.software.model.Play;
 import tecnicas.software.repository.GameRepository;
 
 import java.util.List;
@@ -13,10 +15,12 @@ import java.util.List;
 @Service
 public class GameService {
     private GameRepository gameRepository;
+    private PlayService playService;
 
     @Autowired
-    public GameService(GameRepository gameRepository) {
+    public GameService(GameRepository gameRepository, PlayService playService) {
         this.gameRepository = gameRepository;
+        this.playService = playService;
     }
 
     public List<Game> getAll(){
@@ -31,4 +35,22 @@ public class GameService {
         gameRepository.save(game);
         return getAll();
     }
+
+    public GameMem updateGameOnMemory(GameMem gameMem){
+        boolean upt = false;
+        if (gameMem.getMinute() == 90){
+            if (gameMem.getExtra() < gameMem.getGame().getExtra()){
+                int extra = gameMem.getExtra() + 1;
+                gameMem.setExtra(extra);
+                gameMem.setPlayList(playService.getCurrent(gameMem.getGame().getGame_id(), gameMem.getMinute()));
+            }
+        } else {
+            int minute = gameMem.getMinute() + 1;
+            gameMem.setMinute(minute);
+            gameMem.setPlayList(playService.getCurrent(gameMem.getGame().getGame_id(), gameMem.getMinute()));
+        }
+
+        return gameMem;
+    }
+
 }

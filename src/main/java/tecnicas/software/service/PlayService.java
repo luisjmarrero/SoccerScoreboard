@@ -24,8 +24,16 @@ public class PlayService {
         return playRepository.findAll();
     }
 
-    public List<Play> getByType( String type){
+    public List<Play> getByType(String type){
         return playRepository.findByType(type);
+    }
+
+    public List<Play> getByGameAll(Integer id){
+        return playRepository.findByGameAll(id);
+    }
+
+    public List<Play> getCurrent(Integer id, int minute){
+        return playRepository.findByGameCurrent(id, minute);
     }
 
     public List<Play> create( Play player){
