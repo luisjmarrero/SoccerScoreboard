@@ -33,4 +33,7 @@ dependencies {
 	compile group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.2.1'
 	// https://mvnrepository.com/artifact/com.github.mxab.thymeleaf.extras/thymeleaf-extras-data-attribute
 	compile group: 'com.github.mxab.thymeleaf.extras', name: 'thymeleaf-extras-data-attribute', version: '2.0.1'
+	// https://mvnrepository.com/artifact/org.webjars/angularjs
+	compile group: 'org.webjars', name: 'angularjs', version: '1.6.2'
+
 }

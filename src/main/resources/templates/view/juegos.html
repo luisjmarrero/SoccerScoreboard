@@ -1,12 +1,67 @@
 <!DOCTYPE html>
-<html data-th-include="/layout/layout :: base_layout">
+<html data-th-include="/layout/layout :: base_layout(Juegos)">
 
-<head>
-    <title>Title</title>
-</head>
 <body>
 <div data-th-fragment="content">
-    my page content
+    <div ng-app="app" ng-controller="GameController as vm">
+        <div class="text-center fsb-center">
+            <h2 class="page-header">Juegos</h2>
+
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <p class="navbar-btn">
+                            <a href="#" class="btn btn-default glyphicon glyphicon-plus"></a>
+                        </p>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Buscar por equipos"/>
+                    </div>
+                    <button type="submit" class="btn btn-default">Buscar</button>
+                </form>
+            </div>
+
+            <br/>
+
+            <div class="col-lg-12">
+                <!-- Display games in a table -->
+                <table class="table table-bordered table-hover table-striped">
+                    <thead align="center">
+                    <tr>
+                        <th align="center">Equipo Visitante</th>
+                        <th align="center">Goles Visitante</th>
+                        <th align="center">Estadio</th>
+                        <th align="center">Goles Local</th>
+                        <th align="center">Equipo Local</th>
+                        <th style="width: 90px"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="game in vm.games">
+                        <td>{{game.teamA.name}}</td>
+                        <td>{{game.score_a}}</td>
+                        <td>{{game.stadio}}</td>
+                        <td>{{game.score_a}}</td>
+                        <td>{{game.teamB.name}}</td>
+                        <td>
+                            <div class="btn-group btn-group" role="group" aria-label="...">
+                                <button type="button" class="btn btn-default" aria-label="Left Align">
+                                    <!--<span class="glyphicon glyphicon-expand" aria-hidden="true">Ver juego</span>-->
+                                    <span>Ver juego</span>
+                                </button>
+                                <button type="button" class="btn btn-default btn-danger" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

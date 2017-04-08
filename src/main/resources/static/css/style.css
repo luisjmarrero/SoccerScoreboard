@@ -2,6 +2,22 @@
  * Created by Luis Marrero on 7/4/2017.
  */
 
+/*body {*/
+    /*background-color: #e0e0e0;*/
+/*}*/
+
 body {
-    background-color: #fff;
+    background-color: #ffffff;
+}
+
+.fsb-center {
+    margin-top: 110px;
+}
+
+.body-background {
+    background-color: #eeeeee;
+}
+
+.mi-fecha {
+    margin-left: 50px;
 }
