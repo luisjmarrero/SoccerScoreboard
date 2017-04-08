@@ -9,6 +9,7 @@ import java.util.Date;
 /**
  * Created by Luis Marrero on 5/4/2017.
  */
+// FIXME !!
 @Controller
 public class ViewController {
 
@@ -29,7 +30,16 @@ public class ViewController {
 
     @RequestMapping("/aboutus")
     public String aboutus(Model model){
-        return "layout";
+        return "aboutus";
+    }
+ @RequestMapping("/juegos")
+    public String teams(Model model){
+        return "view/juegos";
+    }
+
+    @RequestMapping("/layout")
+    public String layout(Model model){
+        return "layout/layout";
     }
 
     @RequestMapping("/score")
