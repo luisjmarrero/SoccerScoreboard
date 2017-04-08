@@ -1,26 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}">
-
-<head>
-    <meta charset="UTF-8"/>
-    <title>FootBoard</title>
-    <!--<meta http-equiv="refresh" content="5" />-->
-    <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
-    <link rel="stylesheet" href="../../static/css/custom.css" th:href="@{/css/custom.css}"/>
-
-    <!--    <script type="text/javascript" src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>-->
-</head>
-
-<div th:replace="fragments/header :: header">
-</div>
-
-<th:block layout:fragment="content">
-    <h1>TODO: Fill me (:</h1>
-    <p>This will be the home page</p>
-</th:block>
+<html>
+<head data-th-replace="fragments/head :: head" />
 <body>
+<div data-th-replace="fragments/header :: header" />
 
+<th-block>
+    <h1>TODO: Fill me (:</h1>
+    <p>This will be the home page.</p>
+</th-block>
 </body>
 </html>

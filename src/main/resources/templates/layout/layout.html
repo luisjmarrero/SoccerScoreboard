@@ -1,28 +1,34 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      th:fragment="page">
+<html data-th-fragment="base_layout">
 
 <head>
-    <meta charset="UTF-8"/>
-    <title th:text="${title}">FootBoard</title>
-    <!--<meta http-equiv="refresh" content="5" />-->
-    <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
-    <link rel="stylesheet" href="../../static/css/custom.css" th:href="@{/css/custom.css}"/>
-
-    <!--    <script type="text/javascript" src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>-->
+    <title id="pageTitle">Page title</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" data-th-href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="../../static/css/sb-admin.css" data-th-href="@{/css/sb-admin.css}"/>
+    <link rel="stylesheet" href="../../static/font-awesome/css/font-awesome.min.css"
+          data-th-href="@{/font-awesome/css/font-awesome.min.css}" type="text/css"/>
+    <link rel="stylesheet" href="../../static/css/style.css" data-th-href="@{/css/style.css}"/>
 </head>
 
 <body>
-<div th:replace="fragments/header :: header">
-</div>
+<!-- Navigation bar -->
+<div data-th-replace="fragments/header :: header"/>
+<!-- Page Content wil go here-->
+<div data-th-include="this :: content"/>
 
-<div class="container">
-    <div layout:fragment="content">
-        <p>Content goes here...</p>
-    </div>
-</div>
+<!-- TODO: Footer (?)-->
 
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<script src="js/plugins/morris/raphael.min.js"></script>
+<script src="js/plugins/morris/morris.min.js"></script>
+<script src="js/plugins/morris/morris-data.js"></script>
 
 </body>
+
 </html>
