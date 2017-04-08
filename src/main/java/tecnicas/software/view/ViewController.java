@@ -15,12 +15,20 @@ public class ViewController {
 
     @RequestMapping(value = {"", "/", "home"})
     public String index(Model model) {
+        model.addAttribute("datetime", new Date());
         return "view/index";
     }
 
     @RequestMapping("/juegos")
     public String teams(Model model) {
+        model.addAttribute("datetime", new Date());
         return "view/juegos";
+    }
+
+    @RequestMapping("/jugadores")
+    public String players(Model model) {
+        model.addAttribute("datetime", new Date());
+        return "view/jugadores";
     }
 
     @RequestMapping("/aboutus")
@@ -29,9 +37,10 @@ public class ViewController {
     }
 
     // Just for testing
-    @RequestMapping("/layout")
-    public String layout(Model model) {
-        return "layout/layout";
+    @RequestMapping("/test")
+    public String test(Model model) {
+        model.addAttribute("datetime", new Date());
+        return "fragments/header";
     }
 
     // FIXME

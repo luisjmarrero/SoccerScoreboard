@@ -8,22 +8,24 @@
     <ul class="nav navbar-nav">
         <!-- Leave this here in case we choose to use in the future -->
         <!--<li class="dropdown">-->
-            <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"-->
-               <!--aria-expanded="false">Juegos <span class="caret"></span>-->
-            <!--</a>-->
-            <!--<ul class="dropdown-menu">-->
-                <!--<li><a href="/juegos">Ver juegos</a></li>-->
-                <!--<li><a href="#">Nuevo juego</a></li>-->
-            <!--</ul>-->
+        <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"-->
+        <!--aria-expanded="false">Juegos <span class="caret"></span>-->
+        <!--</a>-->
+        <!--<ul class="dropdown-menu">-->
+        <!--<li><a href="/juegos">Ver juegos</a></li>-->
+        <!--<li><a href="#">Nuevo juego</a></li>-->
+        <!--</ul>-->
         <!--</li>-->
         <li><a href="/juegos">Juegos</a></li>
-        <li><a href="#">Jugadores</a></li>
+        <li><a href="#">Equipos</a></li>
+        <li><a href="/jugadores">Jugadores</a></li>
         <li><a href="#">Acerca de Nosotros</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
         <!--<li>-->
-            <p class="navbar-text mi-fecha">Hoy es 8 de Abril del 2017  </p>
-    <!--</li>-->
+        <p class="navbar-text mi-fecha" data-th-text="${#dates.format(datetime, 'EEEE dd MMMM yyyy HH:mm')}">Hoy es 8 de
+            Abril del 2017 </p>
+        <!--</li>-->
     </ul>
 </nav>
 </body>

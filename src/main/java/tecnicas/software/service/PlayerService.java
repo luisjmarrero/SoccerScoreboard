@@ -24,6 +24,10 @@ public class PlayerService {
         return playerRepository.findAll();
     }
 
+    public List<Player> getAllOrderedByTeam(){
+        return playerRepository.findAllOrderTeam();
+    }
+
     public List<Player> getByTeam(Integer id){
         return playerRepository.findByTeam(id);
     }
@@ -43,7 +47,6 @@ public class PlayerService {
         update.setLastName(player.getLastName());
         update.setPosition(player.getPosition());
         update.setNumber(player.getNumber());
-        update.setOnField(player.isOnField());
         update.setTeam(player.getTeam());
         return playerRepository.save(update);
     }

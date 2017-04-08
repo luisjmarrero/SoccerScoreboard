@@ -26,6 +26,11 @@ public class PlayerRestController {
         return playerService.getAll();
     }
 
+    @RequestMapping(value = "/all/ordered/team", method = RequestMethod.GET)
+    public List<Player> getAllOrdered(){
+        return playerService.getAllOrderedByTeam();
+    }
+
     @RequestMapping(value = "/team/{id}", method = RequestMethod.GET)
     public List<Player> getByTeam(@PathVariable Integer id){
         return playerService.getByTeam(id);

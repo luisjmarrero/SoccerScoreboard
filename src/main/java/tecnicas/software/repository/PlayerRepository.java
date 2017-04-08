@@ -16,5 +16,8 @@ public interface PlayerRepository extends JpaRepository<Player, Integer>{
     @Query(value = "select * from players WHERE players.team_id = ?1", nativeQuery = true)
     List<Player> findByTeam (Integer team);
 
+    @Query(value = "select * from players ORDER by players.team_id", nativeQuery = true)
+    List<Player> findAllOrderTeam ();
+
     List<Player> findByNumber (int number);
 }

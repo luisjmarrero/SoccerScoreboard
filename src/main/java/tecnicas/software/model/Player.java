@@ -16,7 +16,6 @@ public class Player {
     private String lastName;
     private String position;
     private int number;
-    private boolean onField;
     @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
@@ -25,12 +24,11 @@ public class Player {
         super();
     }
 
-    public Player(String name, String lastName, String position,int number, boolean onField, Team team) {
+    public Player(String name, String lastName, String position,int number, Team team) {
         this.name = name;
         this.lastName = lastName;
         this.position = position;
         this.number = number;
-        this.onField = onField;
         this.team = team;
     }
 
@@ -72,14 +70,6 @@ public class Player {
 
     public void setNumber(int number) {
         this.number = number;
-    }
-
-    public boolean isOnField() {
-        return onField;
-    }
-
-    public void setOnField(boolean onField) {
-        this.onField = onField;
     }
 
     public Team getTeam() {

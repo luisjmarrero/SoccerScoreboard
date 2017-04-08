@@ -21,3 +21,9 @@ body {
 .mi-fecha {
     margin-left: 50px;
 }
+
+/*-- change navbar dropdown color --*/
+.navbar-default .navbar-nav .open .dropdown-menu>li>a,.navbar-default .navbar-nav .open .dropdown-menu {
+    /*background-color: #3344ff;*/
+    color:#555;
+}
