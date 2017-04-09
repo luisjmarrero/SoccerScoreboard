@@ -1,38 +1,44 @@
 <!DOCTYPE html>
-<html data-th-include="/layout/form_layout :: form_layout('Nuevo Juego')">
-
-<head>
-    <title>Title</title>
-</head>
+<html>
 <body>
-<div data-th-fragment="content">
-    <div ng-app="app" ng-controller="TeamController as vm">
-        <h2 class="page-header" align="center">Empezar nuevo juego</h2>
+<div data-th-fragment="new-game-modal">
 
-
-        <div class="form-group col-lg-4">
-
-            <label>Equipo local</label>
-            <select class="form-control">
-                <option ng-repeat="team in vm.teams" value="{{team.name}}">{{team.name}}</option>
-            </select>
-            <br/>
-            <label>Equipo visitante</label>
-            <select class="form-control">
-                <option ng-repeat="team in vm.teams" value="{{team.name}}">{{team.name}}</option>
-            </select>
-            <br/>
-            <label>Estadio</label>
-            <input class="form-control"/>
-            <p class="help-block">Example block-level help text here.</p>
-            <br/>
-            <div align="center">
-                <button type="button" class="btn btn-default btn-success" aria-label="Left Align">Comenzar partido</button>
-                <button type="button" class="btn btn-default btn-danger" aria-label="Left Align">Cancelar</button>
+    <div class="modal" id="new_game" ng-app="app" ng-controller="TeamController as vm">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Nuevo Partido</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-8 col-xs-offset-2">
+                            <label>Equipo local</label>
+                            <select class="form-control">
+                                <option ng-repeat="team in vm.teams" value="{{team.name}}">{{team.name}}</option>
+                            </select>
+                            <br/>
+                            <label>Equipo visitante</label>
+                            <select class="form-control">
+                                <option ng-repeat="team in vm.teams" value="{{team.name}}">{{team.name}}</option>
+                            </select>
+                            <br/>
+                            <label>Estadio</label>
+                            <input class="form-control"/>
+                            <p class="help-block">Example block-level help text here.</p>
+                            <br/>
+                            <div align="center">
+                                <button type="button" class="btn btn-default btn-success" aria-label="Left Align">
+                                    Comenzar partido
+                                </button>
+                                <button type="button" class="btn btn-default btn-danger" data-dismiss="modal"
+                                        aria-label="Left Align">Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
-
     </div>
 
 </div>

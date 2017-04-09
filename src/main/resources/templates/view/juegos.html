@@ -14,18 +14,18 @@
                     </div>
                     <button type="submit" class="btn btn-default">Buscar</button>
                 </form>
-
                 <div class="btn-group btn-group navbar-left" role="group" aria-label="...">
-                    <button type="button" data-toggle="tooltip" title="Agregar nuevo juego" class="btn btn-default btn-primary" aria-label="Left Align">
+                    <button type="button" data-toggle="modal"
+                            data-target="#new_game"
+                            class="btn btn-default btn-primary" aria-label="Left Align">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"/>
                     </button>
                     <!--<button type="button" class="btn btn-default btn-danger" aria-label="Left Align">-->
-                        <!--<span class="glyphicon glyphicon-trash" aria-hidden="true"/>-->
+                    <!--<span class="glyphicon glyphicon-trash" aria-hidden="true"/>-->
                     <!--</button>-->
                 </div>
 
             </div>
-
 
 
             <br/>
@@ -65,6 +65,9 @@
                     </tbody>
                 </table>
 
+                <div data-th-replace="forms/new_game_form :: new-game-modal">
+
+                </div>
 
                 <!--<button type="button" class="btn btn-default btn-danger" ng-click="openForm()">Register</button>-->
             </div>
