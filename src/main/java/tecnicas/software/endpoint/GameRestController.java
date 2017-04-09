@@ -13,18 +13,17 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = {"/games"})
-public class GameController {
+public class GameRestController {
 
     GameService gameService;
 
     @Autowired
-    public GameController(GameService gameService) {
+    public GameRestController(GameService gameService) {
         this.gameService = gameService;
     }
 
     @RequestMapping(value = "/all")
     public List<Game> getAll() {
-        System.out.println("calling all");
         return gameService.getAll();
     }
 
@@ -36,5 +35,10 @@ public class GameController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public List<Game> create(@RequestBody Game game) {
         return gameService.create(game);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public List<Game> delete(@PathVariable Integer id) {
+        return gameService.delete(id);
     }
 }

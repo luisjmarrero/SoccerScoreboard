@@ -31,4 +31,9 @@ public class GameService {
         gameRepository.save(game);
         return getAll();
     }
+
+    public List<Game> delete(Integer id) {
+        gameRepository.delete(id);
+        return gameRepository.findAll();
+    }
 }

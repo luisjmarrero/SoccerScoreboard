@@ -26,17 +26,22 @@ public class Game {
     private Date startDate;
     @Temporal(TemporalType.DATE)
     private Date endDate;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "statistic_id")
+    private Statistic statistic;
 
-    public Game() {}
+    public Game() {
+    }
 
-    public Game(String stadio, Team teamA, Integer score_a, Team teamB, Integer score_b, Date startDate, Date endDate) {
+    public Game(String stadio, Integer score_a, Integer score_b, Team teamA, Team teamB, Date startDate, Date endDate, Statistic statistic) {
         this.stadio = stadio;
-        this.teamA = teamA;
         this.score_a = score_a;
-        this.teamB = teamB;
         this.score_b = score_b;
+        this.teamA = teamA;
+        this.teamB = teamB;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.statistic = statistic;
     }
 
     public Integer getGame_id() {
@@ -103,8 +108,11 @@ public class Game {
         this.endDate = endDate;
     }
 
-    //    @PrePersist
-//    void createdAt() {
-//        this.startDate = new Date();
-//    }
+    public Statistic getStatistic() {
+        return statistic;
+    }
+
+    public void setStatistic(Statistic statistic) {
+        this.statistic = statistic;
+    }
 }

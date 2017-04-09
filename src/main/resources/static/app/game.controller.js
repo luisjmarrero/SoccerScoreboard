@@ -16,6 +16,9 @@
 
         vm.games = [];
         vm.getAll = getAll;
+        vm.activeGame = {};
+        vm.changeActiveGame = changeActiveGame;
+        vm.removeGame = removeGame;
 
         init();
 
@@ -31,15 +34,22 @@
             });
         }
 
-        // $scope.openForm = function openForm() {
-        //
-        //     alert('works!');
-        //
-        //
-        //
-        //
-        // };
+        function changeActiveGame(index) {
+            vm.activeGame = index;
+        }
 
+        function removeGame(index) {
+            var isConfirmed = confirm("Seguro que desea borrar este juego?", false);
+            if(isConfirmed){
+                var url = "/games/delete/" + index.game_id;
+                var gamePromise = $http.delete(url);
+                gamePromise.then(function(response){
+                    vm.games = response.data;
+                });
+            }else{
+                return false;
+            }
+        };
 
     }
 })();

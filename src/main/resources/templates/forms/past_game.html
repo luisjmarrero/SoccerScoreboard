@@ -3,7 +3,7 @@
 <body>
 <div data-th-fragment="game-modal">
 
-    <div class="modal" id="view_game" ng-app="app" ng-controller="TeamController as vm">
+    <div class="modal" id="view_game" ng-app="app">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -20,20 +20,19 @@
 
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-lg-4 text-center">Equipo Local</div>
-                                        <div class="col-lg-4 text-center">Camp Nou</div>
-                                        <div class="col-lg-4 text-center">Equipo Visitante</div>
+                                        <div class="col-lg-4 text-center">{{vm.activeGame.teamA.name}}</div>
+                                        <div class="col-lg-4 text-center">{{vm.activeGame.stadio}}</div>
+                                        <div class="col-lg-4 text-center">{{vm.activeGame.teamB.name}}</div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-12 text-center"></div>
 
                                     </div>
-
                                     <div class="row">
-                                        <div class="col-lg-4 text-center">5</div>
-                                        <div class="col-lg-4 text-center"></div>
-                                        <div class="col-lg-4 text-center">2</div>
+                                        <div class="col-lg-4 text-center">{{vm.activeGame.score_a}}</div>
+                                        <div class="col-lg-4 text-center">vs</div>
+                                        <div class="col-lg-4 text-center">{{vm.activeGame.score_b}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -77,45 +76,45 @@
                                         <!--<div class="col-xs-6 text-center">-->
                                         <table class="table table-hover table-striped">
                                             <tr>
-                                                <td>5</td>
+                                                <td>{{vm.activeGame.statistic.posesion_local}} %</td>
                                                 <th class="text-center">Posesion</th>
-                                                <td>5</td>
+                                                <td>{{vm.activeGame.statistic.posesion_away}} %</td>
                                             </tr>
                                             <tr>
-                                                <td>50%</td>
+                                                <td>{{vm.activeGame.statistic.fouls_local}}</td>
                                                 <th class="text-center">Fouls</th>
-                                                <td>50%</td>
+                                                <td>{{vm.activeGame.statistic.fouls_away}}</td>
                                             </tr>
                                             <tr>
-                                                <td>5</td>
+                                                <td>{{vm.activeGame.statistic.yellow_local}}</td>
                                                 <th class="text-center">Tarjetas Amarillas</th>
-                                                <td>3</td>
+                                                <td>{{vm.activeGame.statistic.yellow_away}}</td>
                                             </tr>
                                             <tr>
-                                                <td>1</td>
+                                                <td>{{vm.activeGame.statistic.red_local}}</td>
                                                 <th class="text-center">Tarjetas Rojas</th>
-                                                <td>0</td>
+                                                <td>{{vm.activeGame.statistic.red_local}}</td>
                                             </tr>
                                             <tr>
-                                                <td>5</td>
+                                                <td>{{vm.activeGame.statistic.offside_local}}</td>
                                                 <th class="text-center">Fuera de Lugar</th>
-                                                <td>4</td>
+                                                <td>{{vm.activeGame.statistic.offside_away}}</td>
                                             </tr>
                                             <tr>
-                                                <td>5</td>
+                                                <td>{{vm.activeGame.statistic.corner_local}}</td>
                                                 <th class="text-center">Tiros de esquina</th>
-                                                <td>5</td>
+                                                <td>{{vm.activeGame.statistic.corner_away}}</td>
                                             </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <th class="text-center">Atajadas</th>
-                                                <td>5</td>
-                                            </tr>
+                                            <!--<tr>-->
+                                                <!--<td>{{vm.activeGame.statistic.red_local}}</td>-->
+                                                <!--<th class="text-center">Atajadas</th>-->
+                                                <!--<td>{{vm.activeGame.statistic.red_local}}</td>-->
+                                            <!--</tr>-->
                                         </table>
                                         <!--</div>-->
                                     </div>
-
-                                </div>  <!-- statistics tab-->
+                                </div>
+                                <!-- statistics tab-->
 
                                 <!--Linups tab-->
                                 <div role="tabpanel" class="tab-pane fade" id="linups">
@@ -149,7 +148,8 @@
                                                 </table>
                                             </div>
                                         </div>
-                                    </div> <!-- Local Team -->
+                                    </div>
+                                    <!-- Local Team -->
 
                                     <!-- Away Team -->
                                     <div class="col-xs-6">
@@ -174,10 +174,11 @@
                                                 </table>
                                             </div>
                                         </div>
-                                    </div> <!-- Away Team -->
-                                </div> <!--Linups tab-->
+                                    </div>
+                                    <!-- Away Team -->
+                                </div>
+                                <!--Linups tab-->
                             </div>
-
 
                             <div align="center">
                                 <button type="button" class="btn btn-default btn-danger" data-dismiss="modal"

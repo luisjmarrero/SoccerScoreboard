@@ -45,7 +45,7 @@
                         <th class="text-center">Estadio</th>
                         <th class="text-center">Goles Local</th>
                         <th class="text-center">Equipo Local</th>
-                        <th style="width: 150px"></th>
+                        <th style="width: 200px"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -58,12 +58,14 @@
                         <td>
                             <div class="btn-group btn-group" role="group" aria-label="...">
                                 <button type="button" class="btn btn-default"
-                                        data-toggle="modal"
+                                        data-toggle="modal" ng-click="vm.changeActiveGame(game)"
                                         data-target="#view_game" aria-label="Left Align">
                                     <!--<span class="glyphicon glyphicon-expand" aria-hidden="true">Ver juego</span>-->
-                                    <span>Ver juego</span>
+                                    <span>Ver detalles</span>
                                 </button>
-                                <button type="button" class="btn btn-default btn-danger" aria-label="Left Align">
+                                <button type="button" class="btn btn-default btn-danger"
+                                        ng-click="vm.removeGame(game)"
+                                        aria-label="Left Align">
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"/>
                                 </button>
                             </div>
@@ -72,8 +74,8 @@
                     </tbody>
                 </table>
 
-                <div data-th-replace="forms/new_game_form :: new-game-modal"/>
-                <div data-th-replace="forms/past_game :: game-modal"/>
+                <div data-th-include="forms/new_game_form :: new-game-modal"/>
+                <div data-th-include="forms/past_game :: game-modal"/>
 
 
             </div>
