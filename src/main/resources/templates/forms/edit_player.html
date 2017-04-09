@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div data-th-fragment="edit-player-modal">
+    <div class="modal" id="edit_player" ng-app="app">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Editar Jugador</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-8 col-xs-offset-2">
+                            <div ng-controller="PlayerController as pm">
+                                <label>Nombre</label>
+                                <!-- FIXME to get active player!-->
+                                <input class="form-control" type="text" value="{{pm.activePlayer.name}}"/>
+                                <br/>
+
+                                <label>Apellido</label>
+                                <input class="form-control" value="{{pm.activePlayer.lastName}}"/>
+                                <br/>
+
+                                <label>Numero</label>
+                                <select class="form-control">
+                                    <option ng-repeat="number in pm.numbers" value="{{number}}">{{number}}</option>
+                                </select>
+
+                                <label>Posision</label>
+                                <input class="form-control"/>
+                                <p class="help-block">Example block-level help text here.</p>
+                                <br/>
+
+                                <label>Equipo</label>
+                                <select class="form-control">
+                                    <option value="{{pm.activePlayer.team.name}}">{{pm.active.team.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <br/>
+
+                            <div align="center">
+                                <button type="button" class="btn btn-default btn-success" aria-label="Left Align">
+                                    Guardar
+                                </button>
+                                <button type="button" class="btn btn-default btn-danger" data-dismiss="modal"
+                                        aria-label="Left Align">Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

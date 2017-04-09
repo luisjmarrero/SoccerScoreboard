@@ -44,4 +44,8 @@ public class TeamService {
         teamRepository.delete(id);
         return teamRepository.findAll();
     }
+
+    public Team getByID(Integer id) {
+        return teamRepository.findOne(id);
+    }
 }

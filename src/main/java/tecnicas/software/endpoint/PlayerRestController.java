@@ -43,6 +43,7 @@ public class PlayerRestController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public List<Player> create(@RequestBody Player player){
+        System.err.println("GOT CALLED");
         return playerService.create(player);
     }
 
@@ -51,8 +52,8 @@ public class PlayerRestController {
         return playerService.updateByNumber(id, player);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public List<Player> remove(@RequestParam(value="id", required = true) @PathVariable Integer id){
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public List<Player> remove(@PathVariable Integer id){
         return playerService.remove(id);
     }
 

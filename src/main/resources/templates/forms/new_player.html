@@ -6,50 +6,76 @@
     <div class="modal" id="new_player" ng-app="app">
         <div class="modal-dialog">
             <div class="modal-content">
+
+                <!--<div class="navbar-form navbar-right">-->
+                    <!--<button type="button" class="navbtn btn-sm" aria-label="Left Align">-->
+                        <!--<span class="glyphicon glyphicon-remove" aria-hidden="true"/>-->
+                    <!--</button>-->
+                <!--</div>-->
+
                 <div class="modal-header">
-                    <h2>Nuevo Partido</h2>
+                    <h2>Nuevo Jugador</h2>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-xs-8 col-xs-offset-2">
-                            <label>Nombre</label>
-                            <input class="form-control"/>
-                            <p class="help-block">Example block-level help text here.</p>
-                            <br/>
+                            <!-- FORM -->
+                            <form name="newPlayerForm" ng-submit="createPlayer()">
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input type="text" name="name" class="form-control" ng-model="newPlayer.name"/>
+                                    <!--<span ng-show="errorName">{{errorName}}</span>-->
+                                </div>
+                                <div class="form-group">
+                                    <label>Apellido</label>
+                                    <input type="text" name="lastName" class="form-control"
+                                           ng-model="newPlayer.lastName"/>
+                                    <!--<span ng-show="errorUserName">{{errorUserName}}</span>-->
+                                </div>
+                                <div class="form-group">
+                                    <label>Numero</label>
+                                    <select class="form-control" ng-model="newPlayer.number">
+                                        <option ng-repeat="number in pm.numbers">
+                                            {{number}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Posision</label>
+                                    <input type="text" name="position" class="form-control"
+                                           ng-model="newPlayer.position"/>
+                                    <!--<span ng-show="errorUserName">{{errorUserName}}</span>-->
+                                </div>
 
-                            <label>Apellido</label>
-                            <input class="form-control"/>
-                            <p class="help-block">Example block-level help text here.</p>
-                            <br/>
+                                <div class="form-group" ng-controller="TeamController as vm">
+                                    <label>Equipo</label>
+                                    <select class="form-control" ng-model="team.name" ng-change="">
+                                        <option ng-repeat="team in vm.teams" value="{{team.name}}">{{team.name}}
+                                        </option>
+                                    </select>
+                                </div>
 
-                            <div ng-controller="PlayerController as pm">
-                                <label>Numero</label>
-                                <select class="form-control">
-                                    <option ng-repeat="number in pm.numbers" value="{{number}}">{{number}}</option>
-                                </select>
-                            </div>
+                                <!--<div ng-controller="TeamController as vm">-->
+                                <!--<label>Equipo</label>-->
+                                <!--<select class="form-control">-->
+                                <!--<option ng-repeat="team in vm.teams" value="{{team.name}}">{{team.name}}-->
+                                <!--</option>-->
+                                <!--</select>-->
+                                <!--</div>-->
+                                <!--<br/>-->
 
-                            <label>Numero</label>
-                            <input class="form-control"/>
-                            <p class="help-block">Example block-level help text here.</p>
-                            <br/>
+                                <!--data-dismiss="modal"-->
 
-                            <div ng-controller="TeamController as vm">
-                                <label>Equipo</label>
-                                <select class="form-control">
-                                    <option ng-repeat="team in vm.teams" value="{{team.name}}">{{team.name}}</option>
-                                </select>
-                            </div>
-                            <br/>
-
-                            <div align="center">
-                                <button type="button" class="btn btn-default btn-success" aria-label="Left Align">
+                                <button type="submit" class="btn btn-default btn-success"
+                                        aria-label="Left Align">
                                     Guardar
                                 </button>
                                 <button type="button" class="btn btn-default btn-danger" data-dismiss="modal"
                                         aria-label="Left Align">Cancelar
                                 </button>
-                            </div>
+                                <!--</div>-->
+                            </form>
+
                         </div>
                     </div>
                 </div>

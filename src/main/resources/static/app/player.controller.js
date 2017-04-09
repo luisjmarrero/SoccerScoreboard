@@ -9,9 +9,9 @@
         .module('app')
         .controller('PlayerController', PlayerController);
 
-    PlayerController.$inject = ['$http'];
+    PlayerController.$inject = ['$http', '$scope'];
 
-    function PlayerController($http) {
+    function PlayerController($http, $scope) {
         var pm = this;
 
         pm.players = [];
@@ -19,6 +19,12 @@
         pm.getAllOrderedByTeam = getAllOrderedByTeam;
         pm.numbers = [];
         pm.fillNumbers = fillNumbers;
+        pm.activePlayer = {};
+        pm.changeActivePlayer = changeActivePlayer;
+        $scope.newPlayer = {};
+        $scope.team = {};
+        pm.deletePlayer = deletePlayer;
+        pm.getTeam = getTeam;
 
         init();
 
@@ -48,6 +54,35 @@
             for (var i = 0; i <= 100; i++) {
                 pm.numbers.push(i);
             }
+        }
+
+        // FIXME
+        function changeActivePlayer(index) {
+            pm.activePlayer = index;
+        }
+
+        $scope.createPlayer = function (){
+            // alert($scope.newPlayer.team);
+            var url = "/players/create"
+            $scope.newPlayer.team = $scope.team;
+            $http.post(url, $scope.newPlayer).then(function(response){
+                pm.players = response.data;
+            });
+        }
+
+        function getTeam(id) {
+            var url = "/teams/" + id
+            $scope.newPlayer.team = $scope.team;
+            $http.post(url, $scope.newPlayer).then(function(response){
+                pm.players = response.data;
+            });
+        }
+
+        function deletePlayer(id){
+            var url = "/players/delete/" + id;
+            $http.delete(url).then(function(response){
+                pm.players = response.data;
+            });
         }
     }
 

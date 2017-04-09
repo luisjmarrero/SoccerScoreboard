@@ -32,8 +32,14 @@ public class TeamRestController {
         return teamService.getByName(team);
     }
 
-    @RequestMapping(value = "/create" , method = RequestMethod.POST)
-    public List<Team> create(@RequestBody Team team){
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Team getById(@PathVariable Integer id){
+        return teamService.getByID(id);
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public List<Team> create(@RequestBody Team team) {
+
         return teamService.create(team);
     }
 

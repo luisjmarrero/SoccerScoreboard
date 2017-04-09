@@ -55,11 +55,11 @@
                        data-sort-order="desc">
                     <thead align="center">
                     <tr>
-                        <th align="center">Numero</th>
-                        <th align="center">Nombre</th>
-                        <th align="center">Apellido</th>
-                        <th align="center">Posicion</th>
-                        <th align="center">Equipo</th>
+                        <th class="text-center">Numero</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellido</th>
+                        <th class="text-center">Posicion</th>
+                        <th class="text-center">Equipo</th>
                         <th style="width: 100px"></th>
                     </tr>
                     </thead>
@@ -72,10 +72,13 @@
                         <td>{{player.team.name}}</td>
                         <td>
                             <div class="btn-group btn-group" role="group" aria-label="...">
-                                <button type="button" class="btn btn-default" aria-label="Left Align">
+                                <button type="button" class="btn btn-default" data-toggle="modal"
+                                        data-target="#edit_player" ng-click="pm.changeActivePlayer(player)"
+                                        aria-label="Left Align">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"/>
                                 </button>
-                                <button type="button" class="btn btn-default btn-danger" aria-label="Left Align">
+                                <button type="button" class="btn btn-default btn-danger"
+                                        ng-click="pm.deletePlayer(player.player_id)" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"/>
                                 </button>
                             </div>
@@ -84,7 +87,8 @@
                     </tbody>
                 </table>
 
-                <div data-th-replace="forms/new_player:: new-player-modal"/>
+                <div data-th-include="forms/new_player:: new-player-modal"/>
+                <div data-th-include="forms/edit_player:: edit-player-modal"/>
 
             </div>
         </div>
