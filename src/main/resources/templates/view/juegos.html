@@ -8,20 +8,25 @@
             <h2 class="page-header">Juegos</h2>
 
             <div class="container-fluid">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <p class="navbar-btn">
-                            <a href="#" class="btn btn-default glyphicon glyphicon-plus"></a>
-                        </p>
-                    </li>
-                </ul>
-                <form class="navbar-form navbar-left">
+                <form class="navbar-form navbar-right">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Buscar por equipos"/>
                     </div>
                     <button type="submit" class="btn btn-default">Buscar</button>
                 </form>
+
+                <div class="btn-group btn-group navbar-left" role="group" aria-label="...">
+                    <button type="button" data-toggle="tooltip" title="Agregar nuevo juego" class="btn btn-default btn-primary" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"/>
+                    </button>
+                    <!--<button type="button" class="btn btn-default btn-danger" aria-label="Left Align">-->
+                        <!--<span class="glyphicon glyphicon-trash" aria-hidden="true"/>-->
+                    <!--</button>-->
+                </div>
+
             </div>
+
+
 
             <br/>
 
@@ -35,7 +40,7 @@
                         <th align="center">Estadio</th>
                         <th align="center">Goles Local</th>
                         <th align="center">Equipo Local</th>
-                        <th style="width: 90px"></th>
+                        <th style="width: 150px"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -59,6 +64,9 @@
                     </tr>
                     </tbody>
                 </table>
+
+
+                <!--<button type="button" class="btn btn-default btn-danger" ng-click="openForm()">Register</button>-->
             </div>
         </div>
     </div>

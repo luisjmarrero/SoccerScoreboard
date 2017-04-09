@@ -12,7 +12,7 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <p class="navbar-btn">
-                            <a href="#" class="btn btn-default glyphicon glyphicon-plus"></a>
+                            <a href="#" data-toggle="tooltip" title="Agregar nuevo jugador" class="btn btn-default glyphicon glyphicon-plus"></a>
                         </p>
                     </li>
 
@@ -32,7 +32,7 @@
                             Ordenar por <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Numero</a></li>
-                            <li ng-click="pm.getAllOrderedByTeam()"><a href="#">Equipo</a></li>
+                            <li ng-click="getAllOrderedByTeam()"><a href="#">Equipo</a></li>
                             <li><a href="#">Nombre</a></li>
                             <li><a href="#">Posicion</a></li>
                         </ul>
@@ -55,7 +55,7 @@
                         <th align="center">Apellido</th>
                         <th align="center">Posicion</th>
                         <th align="center">Equipo</th>
-                        <th style="width: 90px"></th>
+                        <th style="width: 100px"></th>
                     </tr>
                     </thead>
                     <tbody>

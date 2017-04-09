@@ -20,9 +20,15 @@ public class ViewController {
     }
 
     @RequestMapping("/juegos")
-    public String teams(Model model) {
+    public String games(Model model) {
         model.addAttribute("datetime", new Date());
         return "view/juegos";
+    }
+
+    @RequestMapping("/new_game")
+    public String newGame(Model model) {
+        model.addAttribute("datetime", new Date());
+        return "view/livegame";
     }
 
     @RequestMapping("/jugadores")
@@ -40,7 +46,7 @@ public class ViewController {
     @RequestMapping("/test")
     public String test(Model model) {
         model.addAttribute("datetime", new Date());
-        return "fragments/header";
+        return "forms/new_game_form";
     }
 
     // FIXME

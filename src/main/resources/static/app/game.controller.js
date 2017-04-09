@@ -9,9 +9,9 @@
         .module('app')
         .controller('GameController', GameController);
 
-    GameController.$inject = ['$http'];
+    GameController.$inject = ['$http', '$window', '$scope'];
 
-    function GameController($http) {
+    function GameController($http, $window, $scope, ModalService) {
         var vm = this;
 
         vm.games = [];
@@ -30,5 +30,29 @@
                 vm.games = response.data;
             });
         }
+
+        $scope.openForm = function openForm() {
+
+            alert('works!');
+            ModalService.showModal({
+                templateUrl: "/test"
+            }).then(function (modal) {
+                alert('it works!');
+            })
+
+        };
+
+        $scope.open = function() {
+            $scope.showModal = true;
+        };
+
+        $scope.ok = function() {
+            $scope.showModal = false;
+        };
+
+        $scope.cancel = function() {
+            $scope.showModal = false;
+        };
+
     }
 })();

@@ -12,10 +12,10 @@
     PlayerController.$inject = ['$http'];
 
     function PlayerController($http) {
-        var vm = this;
+        var pm = this;
 
-        vm.players = [];
-        vm.getAll = getAll;
+        pm.players = [];
+        pm.getAll = getAll;
 
         init();
 
@@ -27,7 +27,7 @@
             var url = "/players/all";
             var gamePromise = $http.get(url);
             gamePromise.then(function(response){
-                vm.players = response.data;
+                pm.players = response.data;
             });
         }
 
@@ -36,7 +36,7 @@
             var url = "/players/all/ordered/team";
             var gamePromise = $http.get(url);
             gamePromise.then(function(response){
-                vm.players = response.data;
+                pm.players = response.data;
             });
         }
     }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html data-th-fragment="base_layout(title)">
-
+<html data-th-fragment="form_layout(title)">
 <head>
     <title id="pageTitle" data-th-text="${title}">Page title</title>
     <link rel="stylesheet" href="../../static/css/bootstrap.min.css" data-th-href="@{/css/bootstrap.min.css}"/>
@@ -9,15 +8,9 @@
           data-th-href="@{/font-awesome/css/font-awesome.min.css}" type="text/css"/>
     <link rel="stylesheet" href="../../static/css/style.css" data-th-href="@{/css/style.css}"/>
 </head>
-
-<!--<body ng-app="app" ng-controller="GameController as vm">-->
 <body>
-<!-- Navigation bar -->
-<div data-th-replace="fragments/header :: header"/>
-<!-- Page Content wil go here-->
-<div data-th-include="this :: content"/>
 
-<!-- TODO: Footer (?)-->
+<div data-th-include="this :: content"/>
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>
@@ -32,5 +25,4 @@
 <script type="text/javascript" src="/static/app/team.controller.js" data-th-src="@{/app/team.controller.js}"></script>
 
 </body>
-
 </html>
