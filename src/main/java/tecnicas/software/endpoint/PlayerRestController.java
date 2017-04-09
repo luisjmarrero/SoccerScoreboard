@@ -43,7 +43,6 @@ public class PlayerRestController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public List<Player> create(@RequestBody Player player){
-        System.err.println("GOT CALLED");
         return playerService.create(player);
     }
 

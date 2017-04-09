@@ -11,7 +11,8 @@
                 <!-- Search bar -->
                 <form class="navbar-form navbar-right">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Buscar por equipos"/>
+                        <input type="text" class="form-control" placeholder="Buscar por equipos"
+                            ng-model="vm.search"/>
                     </div>
                     <button type="submit" class="btn btn-default">Buscar</button>
                 </form>
@@ -49,7 +50,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="game in vm.games">
+                    <tr ng-repeat="game in vm.games | filter:vm.search">
                         <td>{{game.teamA.name}}</td>
                         <td>{{game.score_a}}</td>
                         <td>{{game.stadio}}</td>
@@ -58,7 +59,7 @@
                         <td>
                             <div class="btn-group btn-group" role="group" aria-label="...">
                                 <button type="button" class="btn btn-default"
-                                        data-toggle="modal" ng-click="vm.changeActiveGame(game)"
+                                        data-toggle="modal" ng-click="vm.changeActiveGame(game) ; vm.getPlays(game); vm.getTeamLocal(game.teamA); vm.getTeamAway(game.teamB)"
                                         data-target="#view_game" aria-label="Left Align">
                                     <!--<span class="glyphicon glyphicon-expand" aria-hidden="true">Ver juego</span>-->
                                     <span>Ver detalles</span>

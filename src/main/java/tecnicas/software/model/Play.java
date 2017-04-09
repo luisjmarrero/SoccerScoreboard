@@ -1,5 +1,7 @@
 package tecnicas.software.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,6 +17,7 @@ public class Play {
     private Integer play_id;
     @Enumerated(EnumType.STRING)
     private PlayType type;
+    private Integer minute;
     @ManyToOne
     @JoinColumn(name = "player_id")
     private Player player;
@@ -26,11 +29,13 @@ public class Play {
 
     public Play() {}
 
-    public Play(PlayType type, Player player, Date date, String commentary) {
+    public Play(PlayType type, Integer minute, Player player, Date date, String commentary, Game game) {
         this.type = type;
+        this.minute = minute;
         this.player = player;
         this.date = date;
         this.commentary = commentary;
+        this.game = game;
     }
 
     public Integer getPlay_id() {
@@ -47,6 +52,14 @@ public class Play {
 
     public void setType(PlayType type) {
         this.type = type;
+    }
+
+    public Integer getMinute() {
+        return minute;
+    }
+
+    public void setMinute(Integer minute) {
+        this.minute = minute;
     }
 
     public Player getPlayer() {
@@ -71,5 +84,13 @@ public class Play {
 
     public void setCommentary(String commentary) {
         this.commentary = commentary;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }

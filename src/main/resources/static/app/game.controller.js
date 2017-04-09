@@ -19,6 +19,13 @@
         vm.activeGame = {};
         vm.changeActiveGame = changeActiveGame;
         vm.removeGame = removeGame;
+        vm.plays = [];
+        vm.getPlays = getPlays;
+        vm.localPlayers = [];
+        vm.getTeamLocal = getTeamLocal;
+        vm.awayPlayers = [];
+        vm.getTeamAway = getTeamAway;
+        vm.search = "";
 
         init();
 
@@ -50,6 +57,30 @@
                 return false;
             }
         };
+
+        function getPlays(game){
+            var url = "/plays/all/ordered/game/" + game.game_id;
+            var gamePromise = $http.get(url);
+            gamePromise.then(function(response){
+                vm.plays = response.data;
+            });
+        }
+
+        function getTeamLocal(team){
+            var url = "/players/team/" + team.team_id;
+            var gamePromise = $http.get(url);
+            gamePromise.then(function(response){
+                vm.localPlayers = response.data;
+            });
+        }
+
+        function getTeamAway(team){
+            var url = "/players/team/" + team.team_id;
+            var gamePromise = $http.get(url);
+            gamePromise.then(function(response){
+                vm.awayPlayers = response.data;
+            });
+        }
 
     }
 })();

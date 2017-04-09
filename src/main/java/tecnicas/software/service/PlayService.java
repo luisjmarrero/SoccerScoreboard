@@ -45,4 +45,7 @@ public class PlayService {
     }
 
 
+    public List<Play> getAllOrderedByDate(Integer id) {
+        return playRepository.findByGameOrderByDateDesc(id);
+    }
 }

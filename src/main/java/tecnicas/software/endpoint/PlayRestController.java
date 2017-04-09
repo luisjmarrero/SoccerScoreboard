@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Luis Marrero on 5/4/2017.
  */
 @RestController
-@RequestMapping(value = {"/play"})
+@RequestMapping(value = {"/plays"})
 public class PlayRestController {
 
     PlayService playService;
@@ -25,6 +25,11 @@ public class PlayRestController {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Play> getAll(){
         return playService.getAll();
+    }
+
+    @RequestMapping(value = "/all/ordered/game/{id}", method = RequestMethod.GET)
+    public List<Play> getAllDate(@PathVariable Integer id){
+        return playService.getAllOrderedByDate(id);
     }
 
     @RequestMapping(value = "/{type}", method = RequestMethod.GET)
@@ -43,7 +48,7 @@ public class PlayRestController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public List<Play> remove(@RequestParam(value="id", required = true) @PathVariable Integer id){
+    public List<Play> remove(@PathVariable Integer id){
         return playService.remove(id);
     }
 

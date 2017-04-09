@@ -52,15 +52,14 @@
                             <!-- Play by play tab -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade" id="playbyplay">
-
+                                    <br />
                                     <div class="row text-center">
                                         <div class="card">
                                             <ul class="list-group list-group-flush">
-                                                <li class="list-group-item">1</li>
-                                                <li class="list-group-item">2</li>
-                                                <li class="list-group-item">3</li>
-                                                <li class="list-group-item">4</li>
-
+                                                <div class="alert alert-info" ng-repeat="play in vm.plays">
+                                                    <strong>{{play.minute + ' - ' + play.type}}</strong>
+                                                    {{play.player.name + ' ' + play.player.lastName + ' - ' + play.commentary}}
+                                                </div>
                                             </ul>
                                         </div>
                                     </div>
@@ -134,15 +133,10 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <td>Lionel Messi</td>
-                                                        <td>10</td>
-                                                        <td>Delantero</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Neymar da Silva</td>
-                                                        <td>11</td>
-                                                        <td>Delantero</td>
+                                                    <tr ng-repeat="localPlayer in vm.localPlayers">
+                                                        <td>{{localPlayer.name + ' ' + localPlayer.lastName}}</td>
+                                                        <td>{{localPlayer.number}}</td>
+                                                        <td>{{localPlayer.position}}</td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -165,10 +159,10 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <td>Cristiano Ronaldo</td>
-                                                        <td>7</td>
-                                                        <td>Delantero</td>
+                                                    <tr ng-repeat="awayPlayer in vm.awayPlayers">
+                                                        <td>{{awayPlayer.name + ' ' + awayPlayer.lastName}}</td>
+                                                        <td>{{awayPlayer.number}}</td>
+                                                        <td>{{awayPlayer.position}}</td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
