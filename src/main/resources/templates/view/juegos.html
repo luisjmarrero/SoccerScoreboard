@@ -8,22 +8,27 @@
             <h2 class="page-header">Juegos</h2>
 
             <div class="container-fluid">
+                <!-- Search bar -->
                 <form class="navbar-form navbar-right">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Buscar por equipos"/>
                     </div>
                     <button type="submit" class="btn btn-default">Buscar</button>
                 </form>
+                <!-- Search bar -->
+
+                <!--Add button-->
                 <div class="btn-group btn-group navbar-left" role="group" aria-label="...">
                     <button type="button" data-toggle="modal"
                             data-target="#new_game"
-                            class="btn btn-default btn-primary" aria-label="Left Align">
+                            class="btn btn-default btn-success" aria-label="Left Align">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"/>
                     </button>
                     <!--<button type="button" class="btn btn-default btn-danger" aria-label="Left Align">-->
                     <!--<span class="glyphicon glyphicon-trash" aria-hidden="true"/>-->
                     <!--</button>-->
                 </div>
+                <!--Add button-->
 
             </div>
 
@@ -35,11 +40,11 @@
                 <table class="table table-bordered table-hover table-striped">
                     <thead align="center">
                     <tr>
-                        <th align="center">Equipo Visitante</th>
-                        <th align="center">Goles Visitante</th>
-                        <th align="center">Estadio</th>
-                        <th align="center">Goles Local</th>
-                        <th align="center">Equipo Local</th>
+                        <th class="text-center">Equipo Visitante</th>
+                        <th class="text-center">Goles Visitante</th>
+                        <th class="text-center">Estadio</th>
+                        <th class="text-center">Goles Local</th>
+                        <th class="text-center">Equipo Local</th>
                         <th style="width: 150px"></th>
                     </tr>
                     </thead>
@@ -52,7 +57,9 @@
                         <td>{{game.teamB.name}}</td>
                         <td>
                             <div class="btn-group btn-group" role="group" aria-label="...">
-                                <button type="button" class="btn btn-default" aria-label="Left Align">
+                                <button type="button" class="btn btn-default"
+                                        data-toggle="modal"
+                                        data-target="#view_game" aria-label="Left Align">
                                     <!--<span class="glyphicon glyphicon-expand" aria-hidden="true">Ver juego</span>-->
                                     <span>Ver juego</span>
                                 </button>
@@ -65,11 +72,10 @@
                     </tbody>
                 </table>
 
-                <div data-th-replace="forms/new_game_form :: new-game-modal">
+                <div data-th-replace="forms/new_game_form :: new-game-modal"/>
+                <div data-th-replace="forms/past_game :: game-modal"/>
 
-                </div>
 
-                <!--<button type="button" class="btn btn-default btn-danger" ng-click="openForm()">Register</button>-->
             </div>
         </div>
     </div>

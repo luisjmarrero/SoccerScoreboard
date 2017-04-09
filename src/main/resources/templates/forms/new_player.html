@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div data-th-fragment="new-player-modal">
+
+    <div class="modal" id="new_player" ng-app="app">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Nuevo Partido</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-8 col-xs-offset-2">
+                            <label>Nombre</label>
+                            <input class="form-control"/>
+                            <p class="help-block">Example block-level help text here.</p>
+                            <br/>
+
+                            <label>Apellido</label>
+                            <input class="form-control"/>
+                            <p class="help-block">Example block-level help text here.</p>
+                            <br/>
+
+                            <div ng-controller="PlayerController as pm">
+                                <label>Numero</label>
+                                <select class="form-control">
+                                    <option ng-repeat="number in pm.numbers" value="{{number}}">{{number}}</option>
+                                </select>
+                            </div>
+
+                            <label>Numero</label>
+                            <input class="form-control"/>
+                            <p class="help-block">Example block-level help text here.</p>
+                            <br/>
+
+                            <div ng-controller="TeamController as vm">
+                                <label>Equipo</label>
+                                <select class="form-control">
+                                    <option ng-repeat="team in vm.teams" value="{{team.name}}">{{team.name}}</option>
+                                </select>
+                            </div>
+                            <br/>
+
+                            <div align="center">
+                                <button type="button" class="btn btn-default btn-success" aria-label="Left Align">
+                                    Guardar
+                                </button>
+                                <button type="button" class="btn btn-default btn-danger" data-dismiss="modal"
+                                        aria-label="Left Align">Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

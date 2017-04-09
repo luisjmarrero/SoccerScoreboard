@@ -9,35 +9,40 @@
             <h2 class="page-header">Jugadores</h2>
 
             <div class="container-fluid">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <p class="navbar-btn">
-                            <a href="#" data-toggle="tooltip" title="Agregar nuevo jugador" class="btn btn-default glyphicon glyphicon-plus"></a>
-                        </p>
-                    </li>
-
-                </ul>
-
-                <form class="navbar-form navbar-left">
+                <!-- Search bar -->
+                <form class="navbar-form navbar-right">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Buscar"/>
                     </div>
                     <button type="submit" class="btn btn-default">Buscar</button>
                 </form>
+                <!-- Search bar -->
 
-                <!-- TODO: Make me work! -->
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            Ordenar por <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Numero</a></li>
-                            <li ng-click="getAllOrderedByTeam()"><a href="#">Equipo</a></li>
-                            <li><a href="#">Nombre</a></li>
-                            <li><a href="#">Posicion</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                <!--Add button-->
+                <div class="btn-group btn-group navbar-left" role="group" aria-label="...">
+                    <button type="button" data-toggle="modal"
+                            data-target="#new_player"
+                            class="btn btn-default btn-success" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"/>
+                    </button>
+                </div>
+                <!--Add button-->
+
+
+                <!--&lt;!&ndash; TODO: Make me work! &ndash;&gt;-->
+                <!--<ul class="nav navbar-nav navbar-right">-->
+                <!--<li class="dropdown">-->
+                <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
+                <!--aria-expanded="false">-->
+                <!--Ordenar por <span class="caret"></span></a>-->
+                <!--<ul class="dropdown-menu">-->
+                <!--<li><a href="#">Numero</a></li>-->
+                <!--<li ng-click="getAllOrderedByTeam()"><a href="#">Equipo</a></li>-->
+                <!--<li><a href="#">Nombre</a></li>-->
+                <!--<li><a href="#">Posicion</a></li>-->
+                <!--</ul>-->
+                <!--</li>-->
+                <!--</ul>-->
 
             </div>
 
@@ -78,6 +83,8 @@
                     </tr>
                     </tbody>
                 </table>
+
+                <div data-th-replace="forms/new_player:: new-player-modal"/>
 
             </div>
         </div>

@@ -46,7 +46,7 @@ public class ViewController {
     @RequestMapping("/test")
     public String test(Model model) {
         model.addAttribute("datetime", new Date());
-        return "forms/new_game_form";
+        return "score";
     }
 
     // FIXME

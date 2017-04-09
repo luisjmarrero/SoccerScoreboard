@@ -16,11 +16,15 @@
 
         pm.players = [];
         pm.getAll = getAll;
+        pm.getAllOrderedByTeam = getAllOrderedByTeam;
+        pm.numbers = [];
+        pm.fillNumbers = fillNumbers;
 
         init();
 
         function init(){
             getAll();
+            fillNumbers();
         }
 
         function getAll(){
@@ -39,5 +43,12 @@
                 pm.players = response.data;
             });
         }
+        
+        function fillNumbers() {
+            for (var i = 0; i <= 100; i++) {
+                pm.numbers.push(i);
+            }
+        }
     }
+
 })();

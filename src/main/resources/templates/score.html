@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-th-include="/layout/layout :: base_layout(Jugadores)">
+<html data-th-include="/layout/layout :: base_layout('Scoreboard')">
 
 <body>
 
@@ -7,35 +7,72 @@
 <!--</div>-->
 
 <div data-th-fragment="content">
-    <div class="rown text-center">
-        <div class="colum">
-            <div class="card">
-                <!--<td><img src="../static/img/fc-barcelona.png" data-th-src="@{/resources/img/fc-barcelona.png}" class="img-rounded" alt="" width="15%"></td>-->
-                <img src="../static/img/fc-barcelona.png" data-th-src="@{/img/fc-barcelona.png}"
-                     class="img-rounded" alt="" width="15%"/>
-                <td><b data-th-text="${minute}">90</b></td>
-                <td><b data-th-if="${minute > 90}" data-th-text="'+ ' + ${extra}">+5</b></td>
-                <!--<td><img src="../static/img/real-madrid.png" data-th-src="@{/resources/img/real-madrid.png}" class="img-rounded" alt="" width="12%"></td>-->
-                <img src="../static/img/real-madrid.png" data-th-src="@{/img/real-madrid.png}"
-                     class="img-rounded" alt="" width="12%"/>
-                <!--
-                <br/>
-                <td><b class="text-left" data-th-text="{$team_a_name}">Equipo A</b></td>
-                <td><p class="text-center">Equipo goles</p></td>
-                <span style="text-align:right;" data-th-text="{$team_a_name}">Equipo B</span>
-    -->
+    <!--<div class="rown text-center">-->
+    <!--<div class="colum">-->
+    <!--<div class="card">-->
+    <!--&lt;!&ndash;<td><img src="../static/img/fc-barcelona.png" data-th-src="@{/resources/img/fc-barcelona.png}" class="img-rounded" alt="" width="15%"></td>&ndash;&gt;-->
+    <!--<img src="../static/img/fc-barcelona.png" data-th-src="@{/img/fc-barcelona.png}"-->
+    <!--class="img-rounded" alt="" width="15%"/>-->
+    <!--<td><b data-th-text="${minute}">90</b></td>-->
+    <!--<td><b data-th-if="${minute > 90}" data-th-text="'+ ' + ${extra}">+5</b></td>-->
+    <!--&lt;!&ndash;<td><img src="../static/img/real-madrid.png" data-th-src="@{/resources/img/real-madrid.png}" class="img-rounded" alt="" width="12%"></td>&ndash;&gt;-->
+    <!--<img src="../static/img/real-madrid.png" data-th-src="@{/img/real-madrid.png}"-->
+    <!--class="img-rounded" alt="" width="12%"/>-->
+    <!--&lt;!&ndash;-->
+    <!--<br/>-->
+    <!--<td><b class="text-left" data-th-text="{$team_a_name}">Equipo A</b></td>-->
+    <!--<td><p class="text-center">Equipo goles</p></td>-->
+    <!--<span style="text-align:right;" data-th-text="{$team_a_name}">Equipo B</span>-->
+    <!--&ndash;&gt;-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!-- Score -->
+    <div class="container fsb-center">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Juego en vivo</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-4 text-center">Equipo Local</div>
+                            <div class="col-lg-4 text-center">Camp Nou</div>
+                            <div class="col-lg-4 text-center">Equipo Visitante</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 text-center">90:00</div>
+                            <div class="col-lg-12 text-center">+5</div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4 text-center">5</div>
+                            <div class="col-lg-4 text-center"></div>
+                            <div class="col-lg-4 text-center">2</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <!-- Score -->
 
     <div class="container">
         <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li class="nav-item"><a href="#playbyplay" class="nav-link" role="tab" data-toggle="tab">Play by Play</a>
+            <li class="nav-item"><a href="#playbyplay" class="nav-link" role="tab" data-toggle="tab">Play by
+                Play</a>
             </li>
-            <li class="nav-item"><a href="#statics" class="nav-link" role="tab" data-toggle="tab">Statics</a></li>
+            <li class="nav-item"><a href="#statistics" class="nav-link" role="tab" data-toggle="tab">Statistics</a>
+            </li>
             <li class="nav-item"><a href="#linups" class="nav-link" role="tab" data-toggle="tab">Linups</a></li>
         </ul>
 
+        <!-- Play by play tab -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade" id="playbyplay">
 
@@ -51,15 +88,60 @@
                     </div>
                 </div>
 
-            </div>
-            <div role="tabpanel" class="tab-pane active" id="statics">
-                Statistics
-            </div>
+            </div> <!-- Play by play tab -->
+
+            <!-- statistics tab-->
+            <div role="tabpanel" class="tab-pane active text-center" id="statistics">
+                <h3>Statistics</h3>
+                <br/>
+
+                <div class="row text-center">
+                    <!--<div class="col-xs-6 text-center">-->
+                    <table class="table table-hover table-striped">
+                        <tr>
+                            <td>5</td>
+                            <th class="text-center">Fouls</th>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <th class="text-center">Tarjetas Amarillas</th>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <th class="text-center">Tarjetas Rojas</th>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <th class="text-center">Fuera de Lugar</th>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <th class="text-center">Tiros de esquina</th>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <th class="text-center">Atajadas</th>
+                            <td>5</td>
+                        </tr>
+                    </table>
+                    <!--</div>-->
+                </div>
+
+            </div>  <!-- statistics tab-->
+
+            <!--Linups tab-->
             <div role="tabpanel" class="tab-pane fade" id="linups">
                 <br/>
+                <!-- Local Team -->
                 <div class="col-xs-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading" style="text-align: center"><b data-th-text="${name_a}">Equipo A</b></div>
+                        <div class="panel-heading" style="text-align: center"><b>Equipo A</b>
+                        </div>
                         <div class="panel-body">
                             <table class="table table-condensed table-summary table-borderless ">
                                 <thead>
@@ -84,10 +166,12 @@
                             </table>
                         </div>
                     </div>
-                </div>
+                </div> <!-- Local Team -->
+
+                <!-- Away Team -->
                 <div class="col-xs-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading" style="text-align: center"><b data-th-text="${name_b}">Equipo B</b></div>
+                        <div class="panel-heading" style="text-align: center"><b>Equipo B</b></div>
                         <div class="panel-body">
                             <table class="table table-condensed table-summary table-borderless ">
                                 <thead>
@@ -107,8 +191,8 @@
                             </table>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> <!-- Away Team -->
+            </div> <!--Linups tab-->
         </div>
 
     </div>
