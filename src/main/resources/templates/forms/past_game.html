@@ -27,7 +27,6 @@
 
                                     <div class="row">
                                         <div class="col-lg-12 text-center"></div>
-
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-4 text-center">{{vm.activeGame.score_a}}</div>
@@ -42,7 +41,7 @@
                                                         data-toggle="tab">Play by
                                     Play</a>
                                 </li>
-                                <li class="nav-item"><a href="#statistics" class="nav-link" role="tab"
+                                <li class="nav-item"><a href="#statistics" class="nav-link active" role="tab"
                                                         data-toggle="tab">Statistics</a>
                                 </li>
                                 <li class="nav-item"><a href="#linups" class="nav-link" role="tab" data-toggle="tab">Linups</a>
@@ -52,19 +51,24 @@
                             <!-- Play by play tab -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade" id="playbyplay">
-                                    <br />
-                                    <div class="row text-center">
-                                        <div class="card">
-                                            <ul class="list-group list-group-flush">
-                                                <div class="alert alert-info" ng-repeat="play in vm.plays">
-                                                    <strong>{{play.minute + ' - ' + play.type}}</strong>
-                                                    {{play.player.name + ' ' + play.player.lastName + ' - ' + play.commentary}}
-                                                </div>
-                                            </ul>
+                                    <br/>
+                                    <div class="col-xs-12 text-center">
+                                        <div class="row text-center">
+                                            <div class="card">
+                                                <ul class="list-group list-group-flush">
+                                                    <div class="alert alert-info" ng-repeat="play in vm.plays">
+                                                        <strong>{{play.minute + ' - ' + play.player.name + ' ' +
+                                                            play.player.lastName + ' '}}</strong>
+                                                        {{play.type + '!! - ' +
+                                                        play.commentary}}
+                                                    </div>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
 
-                                </div> <!-- Play by play tab -->
+                                </div>
+                                <!-- Play by play tab -->
 
                                 <!-- statistics tab-->
                                 <div role="tabpanel" class="tab-pane active text-center" id="statistics">
@@ -105,9 +109,9 @@
                                                 <td>{{vm.activeGame.statistic.corner_away}}</td>
                                             </tr>
                                             <!--<tr>-->
-                                                <!--<td>{{vm.activeGame.statistic.red_local}}</td>-->
-                                                <!--<th class="text-center">Atajadas</th>-->
-                                                <!--<td>{{vm.activeGame.statistic.red_local}}</td>-->
+                                            <!--<td>{{vm.activeGame.statistic.red_local}}</td>-->
+                                            <!--<th class="text-center">Atajadas</th>-->
+                                            <!--<td>{{vm.activeGame.statistic.red_local}}</td>-->
                                             <!--</tr>-->
                                         </table>
                                         <!--</div>-->
@@ -148,7 +152,8 @@
                                     <!-- Away Team -->
                                     <div class="col-xs-6">
                                         <div class="panel panel-default">
-                                            <div class="panel-heading" style="text-align: center"><b>Equipo Visitante</b></div>
+                                            <div class="panel-heading" style="text-align: center"><b>Equipo
+                                                Visitante</b></div>
                                             <div class="panel-body">
                                                 <table class="table table-bordered table-hover table-striped">
                                                     <thead>

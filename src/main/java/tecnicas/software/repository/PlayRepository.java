@@ -16,6 +16,6 @@ public interface PlayRepository extends JpaRepository<Play, Integer> {
     @Query(value = "select * from plays WHERE type = ?1", nativeQuery = true)
     List<Play> findByType(String s);
 
-    @Query(value = "select * from plays WHERE game_id = ?1", nativeQuery = true)
+    @Query(value = "select * from plays WHERE game_id = ?1 ORDER BY minute DESC ", nativeQuery = true)
     List<Play> findByGameOrderByDateDesc(Integer id);
 }
