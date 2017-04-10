@@ -15,23 +15,24 @@
         var pm = this;
 
         pm.players = [];
+        pm.teams = [];
         pm.getAll = getAll;
         pm.getAllOrderedByTeam = getAllOrderedByTeam;
         pm.numbers = [];
         pm.fillNumbers = fillNumbers;
         pm.activePlayer = {};
         pm.changeActivePlayer = changeActivePlayer;
-        $scope.newPlayer = {};
+        pm.newPlayer = {};
         pm.team = {};
         pm.deletePlayer = deletePlayer;
-        pm.getTeam = getTeam;
         pm.search = "";
-        // pm.createPlayer = createPlayer;
+        pm.getTeams = getTeams;
 
         init();
 
         function init(){
             getAll();
+            getTeams();
             fillNumbers();
         }
 
@@ -44,7 +45,7 @@
         }
 
         function getAllOrderedByTeam(){
-            alert('got it!');
+            // alert('got it!');
             var url = "/players/all/ordered/team";
             var gamePromise = $http.get(url);
             gamePromise.then(function(response){
@@ -58,25 +59,25 @@
             }
         }
 
-        // FIXME
         function changeActivePlayer(index) {
             pm.activePlayer = index;
         }
 
         $scope.createPlayer = function (){
-            alert(pm.team);
+            var jsonObj = JSON.parse(pm.team);
+            pm.newPlayer.team = jsonObj;
             var url = "/players/create";
-            $scope.newPlayer.team = pm.team;
-            $http.post(url, $scope.newPlayer).then(function(response){
+            console.debug(pm.newPlayer);
+            $http.post(url, pm.newPlayer).then(function(response){
                 pm.players = response.data;
             });
         }
 
-        function getTeam(id) {
-            var url = "/teams/" + id;
-            $scope.newPlayer.team = $scope.team;
-            $http.post(url, $scope.newPlayer).then(function(response){
-                pm.players = response.data;
+        function getTeams(){
+            var url = "/teams/all";
+            var gamePromise = $http.get(url);
+            gamePromise.then(function(response){
+                pm.teams = response.data;
             });
         }
 

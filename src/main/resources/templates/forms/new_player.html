@@ -7,12 +7,6 @@
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <!--<div class="navbar-form navbar-right">-->
-                    <!--<button type="button" class="navbtn btn-sm" aria-label="Left Align">-->
-                        <!--<span class="glyphicon glyphicon-remove" aria-hidden="true"/>-->
-                    <!--</button>-->
-                <!--</div>-->
-
                 <div class="modal-header">
                     <h2>Nuevo Jugador</h2>
                 </div>
@@ -23,18 +17,18 @@
                             <form name="newPlayerForm" ng-submit="createPlayer()">
                                 <div class="form-group">
                                     <label>Nombre</label>
-                                    <input type="text" name="name" class="form-control" ng-model="newPlayer.name"/>
+                                    <input type="text" name="name" class="form-control" ng-model="pm.newPlayer.name"/>
                                     <!--<span ng-show="errorName">{{errorName}}</span>-->
                                 </div>
                                 <div class="form-group">
                                     <label>Apellido</label>
                                     <input type="text" name="lastName" class="form-control"
-                                           ng-model="newPlayer.lastName"/>
+                                           ng-model="pm.newPlayer.lastName"/>
                                     <!--<span ng-show="errorUserName">{{errorUserName}}</span>-->
                                 </div>
                                 <div class="form-group">
                                     <label>Numero</label>
-                                    <select class="form-control" ng-model="newPlayer.number">
+                                    <select class="form-control" ng-model="pm.newPlayer.number">
                                         <option ng-repeat="number in pm.numbers">
                                             {{number}}
                                         </option>
@@ -43,31 +37,23 @@
                                 <div class="form-group">
                                     <label>Posision</label>
                                     <input type="text" name="position" class="form-control"
-                                           ng-model="newPlayer.position"/>
+                                           ng-model="pm.newPlayer.position"/>
                                     <!--<span ng-show="errorUserName">{{errorUserName}}</span>-->
                                 </div>
 
                                 <div class="form-group" ng-controller="TeamController as vm">
                                     <label>Equipo</label>
                                     <select class="form-control" ng-model="pm.team">
-                                        <option ng-repeat="team in vm.teams" value="{{team.name}}">{{team.name}}
+                                        <option ng-repeat="team in pm.teams" value="{{team}}">{{team.name}}
                                         </option>
                                     </select>
                                 </div>
 
-                                <!--<div ng-controller="TeamController as vm">-->
-                                <!--<label>Equipo</label>-->
-                                <!--<select class="form-control">-->
-                                <!--<option ng-repeat="team in vm.teams" value="{{team.name}}">{{team.name}}-->
-                                <!--</option>-->
-                                <!--</select>-->
-                                <!--</div>-->
-                                <!--<br/>-->
 
                                 <!--data-dismiss="modal"-->
 
                                 <!--onclick="$('.modal').modal('hide')"-->
-                                <button type="submit" class="btn btn-default btn-success"
+                                <button type="submit" class="btn btn-default btn-success" onclick="$('.modal').modal('hide')"
                                         aria-label="Left Align">
                                     Guardar
                                 </button>

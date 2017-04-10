@@ -37,6 +37,7 @@ public class PlayerService {
     }
 
     public List<Player> create(Player player){
+        System.err.println(player.getTeam().getTeam_id() + " " + player.getTeam().getName());
         playerRepository.save(player);
         return playerRepository.findAll();
     }
