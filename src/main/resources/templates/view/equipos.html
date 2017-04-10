@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html data-th-include="/layout/layout :: base_layout(Equipos)">
+<body >
+    <div data-th-fragment="content">
+        <div ng-app="app" ng-controller="TeamController as vm">
+            <div class="text-center fsb-center">
+                <h2 class="page-header">Equipos</h2>
+
+                <div class="container-fluid">
+                    <!-- Start of Search bar -->
+                    <form class="navbar-form navbar-right">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Buscar"/>
+                        </div>
+                        <button type="submit" class="btn btn-default">Buscar</button>
+                    </form>
+                    <!-- End of Search bar -->
+
+                    <!-- Start of Add button-->
+                    <div class="btn-group btn-group navbar-left" role="group" aria-label="...">
+                        <button type="button" data-toggle="modal"
+                                data-target="#new_team"
+                                class="btn btn-default btn-success" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"/>
+                        </button>
+                    </div>
+                    <!-- End of Add button-->
+                </div>
+
+                <br/>
+
+                <div class="col-lg-12">
+                    <!-- Display teams in a table -->
+
+                    <table class="table table-bordered table-hover table-striped"
+                           data-sort-name="number"
+                           data-sort-order="desc">
+                        <thead align="center">
+                        <tr>
+                            <th align="center">Nombre del Equipo</th>
+                            <th style="width: 100px"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="team in vm.teams">
+                            <td>{{team.name}}</td>
+                            <td>
+                                <div class="btn-group btn-group" role="group" aria-label="...">
+                                    <button type="button" class="btn btn-default" aria-label="Left Align">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"/>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-danger" aria-label="Left Align">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"/>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div data-th-replace="forms/new_team:: new-team-modal"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

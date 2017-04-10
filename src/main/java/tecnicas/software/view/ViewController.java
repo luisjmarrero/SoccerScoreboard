@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.xml.ws.RequestWrapper;
 import java.util.Date;
 
 /**
@@ -35,6 +36,12 @@ public class ViewController {
     public String players(Model model) {
         model.addAttribute("datetime", new Date());
         return "view/jugadores";
+    }
+
+    @RequestMapping("/equipos")
+    public String teams(Model model){
+        model.addAttribute("datetime", new Date());
+        return "view/equipos";
     }
 
     @RequestMapping("/aboutus")

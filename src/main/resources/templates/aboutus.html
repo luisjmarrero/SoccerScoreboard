@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html>
-<head data-th-replace="fragments/head :: head" />
-<body>
-<div data-th-replace="fragments/header :: header" />
+<html data-th-include="/layout/layout :: base_layout">
 
-<th-block>
-    <h1>TODO: Fill me (:</h1>
-    <p>This will be the about us page.</p>
-</th-block>
+<body>
+<div data-th-fragment="content">
+    <h1>droga</h1>
+</div>
 </body>
+
 </html>
