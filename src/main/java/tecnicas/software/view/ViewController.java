@@ -10,7 +10,6 @@ import java.util.Date;
 /**
  * Created by Luis Marrero on 5/4/2017.
  */
-// FIXME !!
 @Controller
 public class ViewController {
 
@@ -48,6 +47,7 @@ public class ViewController {
     public String aboutus(Model model) {
         model.addAttribute("datetime", new Date());
         return "view/aboutus";
+
     }
 
     // Just for testing
