@@ -22,9 +22,11 @@
         pm.activePlayer = {};
         pm.changeActivePlayer = changeActivePlayer;
         $scope.newPlayer = {};
-        $scope.team = {};
+        pm.team = {};
         pm.deletePlayer = deletePlayer;
         pm.getTeam = getTeam;
+        pm.search = "";
+        // pm.createPlayer = createPlayer;
 
         init();
 
@@ -62,16 +64,16 @@
         }
 
         $scope.createPlayer = function (){
-            // alert($scope.newPlayer.team);
-            var url = "/players/create"
-            $scope.newPlayer.team = $scope.team;
+            alert(pm.team);
+            var url = "/players/create";
+            $scope.newPlayer.team = pm.team;
             $http.post(url, $scope.newPlayer).then(function(response){
                 pm.players = response.data;
             });
         }
 
         function getTeam(id) {
-            var url = "/teams/" + id
+            var url = "/teams/" + id;
             $scope.newPlayer.team = $scope.team;
             $http.post(url, $scope.newPlayer).then(function(response){
                 pm.players = response.data;

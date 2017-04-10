@@ -28,7 +28,7 @@
                                     <span>{{vm.time}} </span>
                                 </div>
                                 <div class="col-lg-12 text-center">
-                                    <span>{{extra}}</span>
+                                    <span>{{ minute }}</span>
                                 </div>
 
                             </div>
@@ -53,7 +53,7 @@
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"/>
                     </button>
                     <button type="button" class="btn btn-default btn-warning" ng-show="!vm.running"
-                            ng-click="vm.change(true) ; vm.start()"  aria-label="Left Align">
+                            ng-click="vm.change(true) ; vm.start() ; vm.tick()"  aria-label="Left Align">
                         <span class="glyphicon glyphicon-play" aria-hidden="true"/>
                     </button>
                     <button type="button" class="btn btn-default btn-warning" ng-show="vm.running"

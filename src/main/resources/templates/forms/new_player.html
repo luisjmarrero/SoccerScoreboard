@@ -49,7 +49,7 @@
 
                                 <div class="form-group" ng-controller="TeamController as vm">
                                     <label>Equipo</label>
-                                    <select class="form-control" ng-model="team.name" ng-change="">
+                                    <select class="form-control" ng-model="pm.team">
                                         <option ng-repeat="team in vm.teams" value="{{team.name}}">{{team.name}}
                                         </option>
                                     </select>
@@ -66,6 +66,7 @@
 
                                 <!--data-dismiss="modal"-->
 
+                                <!--onclick="$('.modal').modal('hide')"-->
                                 <button type="submit" class="btn btn-default btn-success"
                                         aria-label="Left Align">
                                     Guardar
