@@ -46,6 +46,7 @@ public class ViewController {
 
     @RequestMapping("/aboutus")
     public String aboutus(Model model) {
+        model.addAttribute("datetime", new Date());
         return "aboutus";
     }
 
