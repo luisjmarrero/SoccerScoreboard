@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import tecnicas.software.model.Play;
+import tecnicas.software.model.PlayType;
 
 import java.util.List;
 
@@ -18,4 +19,7 @@ public interface PlayRepository extends JpaRepository<Play, Integer> {
 
     @Query(value = "select * from plays WHERE game_id = ?1 ORDER BY minute DESC ", nativeQuery = true)
     List<Play> findByGameOrderByDateDesc(Integer id);
+
+
+
 }

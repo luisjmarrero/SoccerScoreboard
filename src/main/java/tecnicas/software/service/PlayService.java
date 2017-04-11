@@ -3,7 +3,9 @@ package tecnicas.software.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tecnicas.software.model.Play;
+import tecnicas.software.model.PlayType;
 import tecnicas.software.repository.PlayRepository;
+import tecnicas.software.repository.PlayTypeRepository;
 
 import java.util.List;
 
@@ -14,10 +16,12 @@ import java.util.List;
 public class PlayService {
 
     PlayRepository playRepository;
+    PlayTypeRepository playTypeRepository;
 
     @Autowired
-    public PlayService(PlayRepository playRepository) {
+    public PlayService(PlayRepository playRepository, PlayTypeRepository playTypeRepository) {
         this.playRepository = playRepository;
+        this.playTypeRepository = playTypeRepository;
     }
 
     public List<Play> getAll(){
@@ -28,8 +32,12 @@ public class PlayService {
         return playRepository.findByType(type);
     }
 
-    public List<Play> create( Play player){
-        playRepository.save(player);
+    public List<PlayType> geTypes(){
+        return playTypeRepository.findTypes();
+    }
+
+    public List<Play> create( Play play){
+        playRepository.save(play);
         return playRepository.findAll();
     }
 

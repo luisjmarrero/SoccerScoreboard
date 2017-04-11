@@ -36,4 +36,8 @@ public class GameService {
         gameRepository.delete(id);
         return gameRepository.findAll();
     }
+
+    public Game getLast() {
+        return gameRepository.findLastGame();
+    }
 }

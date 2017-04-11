@@ -27,6 +27,11 @@ public class GameRestController {
         return gameService.getAll();
     }
 
+    @RequestMapping(value = "/last", method = RequestMethod.GET)
+    public Game getLast() {
+        return gameService.getLast();
+    }
+
     @RequestMapping(value = "/{id}")
     public Game getById(@PathVariable Integer id) {
         return gameService.getByID(id);

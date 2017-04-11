@@ -82,11 +82,17 @@
         }
 
         function deletePlayer(id){
-            var url = "/players/delete/" + id;
-            $http.delete(url).then(function(response){
-                pm.players = response.data;
-            });
+            var isConfirmed = confirm("Seguro que desea borrar este juego?", false);
+            if (isConfirmed) {
+                var url = "/players/delete/" + id;
+                $http.delete(url).then(function (response) {
+                    pm.players = response.data;
+                });
+            } else {
+                return false;
+            }
         }
+
     }
 
 })();
