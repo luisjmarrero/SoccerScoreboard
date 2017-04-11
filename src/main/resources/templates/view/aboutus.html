@@ -2,32 +2,52 @@
 <html data-th-include="/layout/layout :: base_layout('About Us')" xmlns:th="http://www.w3.org/1999/xhtml">
 <body>
 <div data-th-fragment="content">
-    <div class="text-center fsb-center">
-        <h2 class="page-header">Acerca de Nosotros</h2>
-        <p>Somos un equipo mediatico, apasionado del futbol, que se ocupa de brindar toda la informacion posible sobre
-            todo partido de futbol perteneciente a la liga UEFA.</p>
 
-        <div class="col-lg-12">
-            <h3 class="page-header">Nuestro Equipo</h3>
+    <div class="container">
+
+        <!-- Introduction Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Acerca de Nosotros</h1>
+                <p>Somos un equipo mediatico, apasionado del futbol, que se ocupa de brindar toda la informacion posible
+                    sobre
+                    todo partido de futbol perteneciente a la liga UEFA.</p>
+            </div>
         </div>
 
-        <!-- TODO: ARREGLAR CENTRALIZADO DE FOTO Y SIZE-->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Nuestro Equipo</h2>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img class="img-circle img-responsive img-center" width="200px" th:src="@{/img/luijo-cv.jpg}"
+                     src="../../static/img/luijo-cv.jpg"/>
+                <h3>Luis Marrero</h3>
+                <p>Ingeniero en Sistema, egresado del INTEC, enfocado en el desarrollo y soporte de la plataforma
+                    Prepago de Claro Dominicana</p>
+            </div>
+            <div class="col-lg-6 col-sm-6 text-center">
+                <img class="img-circle img-responsive img-center" width="200px" th:src="@{/img/alfonso-cv.jpg}"
+                     src="../../static/img/alfonso-cv.jpg"/>
+                <h3>Alfonso Hernandez</h3>
+                <p>Ingeniero en Sistema, egresado del INTEC, enfocado en el desarrollo y soporte de la plataforma
+                    Postpago de Claro Dominicana</p>
+            </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-sm-6 text-center">
-                    <img class="img-circle img-responsive img-center" th:src="@{/img/luijo-cv.jpg}" src="../../static/img/luijo-cv.jpg"/>
-                    <h4>Luis Marrero</h4>
-                    <p>Ingeniero en Sistema, egresado del INTEC, enfocado en el desarrollo y soporte de la plataforma Prepago de Claro Dominicana</p>
-                </div>
+        </div>
 
-                <div class="col-lg-6 col-sm-6 text-center">
-                    <img class="img-circle img-responsive img-center" th:src="@{/img/alfonso-cv.jpg}" src="../../static/img/alfonso-cv.jpg"/>
-                    <h4>Alfonso Hernandez</h4>
-                    <p>Ingeniero en Sistema, egresado del INTEC, enfocado en el desarrollo y soporte de la plataforma Postpago de Claro Dominicana</p>
+        <br /><br />
+        <hr />
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="alert alert-warning">
+                    <strong>Aviso Importante</strong>
+                    <p>Esta aplicación ha sido realizada como parte de un proyecto para la materia de Técnicas
+                        Fundamentales de Ingeniería de Software, en el Instituto Tecnológico de Santo Domingo</p>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 </body>

@@ -27,3 +27,10 @@ body {
     /*background-color: #3344ff;*/
     color:#555;
 }
+
+#img_id {
+    width: 200px;
+    margin: 0px auto;
+    position:fixed;
+    top: 30%;
+}
