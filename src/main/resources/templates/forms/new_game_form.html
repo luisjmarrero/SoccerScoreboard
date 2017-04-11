@@ -2,40 +2,45 @@
 <html>
 <body>
 <div data-th-fragment="new-game-modal">
-
-    <div class="modal" id="new_game" ng-app="app" ng-controller="TeamController as vm">
+    <!--ng-controller="GameController as vm"-->
+    <div class="modal" id="new_game" ng-app="app">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h2>Nuevo Partido</h2>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-xs-8 col-xs-offset-2">
-                            <label>Equipo local</label>
-                            <select class="form-control">
-                                <option ng-repeat="team in vm.teams" value="{{team.name}}">{{team.name}}</option>
-                            </select>
-                            <br/>
-                            <label>Equipo visitante</label>
-                            <select class="form-control">
-                                <option ng-repeat="team in vm.teams" value="{{team.name}}">{{team.name}}</option>
-                            </select>
-                            <br/>
-                            <label>Estadio</label>
-                            <input class="form-control"/>
-                            <p class="help-block">Ej: Camp Nou</p>
-                            <br/>
-                            <div align="center">
-                                <button type="button" class="btn btn-default btn-success" aria-label="Left Align">
-                                    Comenzar partido ahora
-                                </button>
-                                <button type="button" class="btn btn-default btn-danger" data-dismiss="modal"
-                                        aria-label="Left Align">Cancelar
-                                </button>
+                    <form name="newPlayerForm" ng-submit="createGame()">
+                        <div class="row">
+                            <div class="col-xs-8 col-xs-offset-2">
+                                <div ng-controller="TeamController as tm">
+                                    <label>Equipo local</label>
+                                    <select class="form-control" ng-model="vm.activeGame.teamA">
+                                        <option ng-repeat="team in tm.teams" value="{{team}}">{{team.name}}</option>
+                                    </select>
+                                    <br/>
+                                    <label>Equipo visitante</label>
+                                    <select class="form-control" ng-model="vm.activeGame.teamB">
+                                        <option ng-repeat="team in tm.teams" value="{{team}}">{{team.name}}</option>
+                                    </select>
+                                </div>
+                                <br/>
+                                <label>Estadio</label>
+                                <input class="form-control" ng-model="vm.activeGame.stadio"/>
+                                <p class="help-block">Ej: Camp Nou</p>
+                                <br/>
+                                <div align="center">
+                                    <button type="submit" class="btn btn-default btn-success" aria-label="Left Align"
+                                            onclick="$('.modal').modal('hide')">
+                                        Comenzar partido ahora
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-danger" data-dismiss="modal"
+                                            aria-label="Left Align">Cancelar
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

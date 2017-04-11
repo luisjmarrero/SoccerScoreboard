@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import tecnicas.software.model.Game;
 import tecnicas.software.service.GameService;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 /**

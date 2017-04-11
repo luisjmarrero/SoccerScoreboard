@@ -51,7 +51,7 @@ public class ViewController {
     }
 
     // Just for testing
-    @RequestMapping("/test")
+    @RequestMapping("/live")
     public String test(Model model) {
         model.addAttribute("datetime", new Date());
         return "view/score";

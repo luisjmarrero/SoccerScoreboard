@@ -1,5 +1,7 @@
 /**
  * Created by Luis Marrero on 8/4/2017.
+ *
+ * Tus reales forces....
  */
 
 (function(){
@@ -165,6 +167,20 @@
             $http.post(url, vm.newPlay).then(function(response){
                 vm.plays = response.data;
             });
+        }
+
+        $scope.createGame = function () {
+            console.log(vm.activeGame);
+            vm.activeGame.teamA = JSON.parse(vm.activeGame.teamA);
+            vm.activeGame.teamB = JSON.parse(vm.activeGame.teamB);
+
+            var url = "/games/create";
+            $http.post(url, vm.activeGame).then(function(response){
+                vm.games = response.data;
+            });
+
+            $window.location.href = '/live';
+
         }
 
         $scope.onloadFun = function() {
