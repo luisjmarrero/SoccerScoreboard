@@ -28,9 +28,20 @@ public class Play {
     @ManyToOne
     @JoinColumn(name = "game_id")
     private Game game;
-    String commentary;
+    private String commentary;
+    private Boolean local;
 
     public Play() {}
+
+    public Play(PlayType type, Integer minute, Player player_a, Player player_b, Game game, String commentary, Boolean local) {
+        this.type = type;
+        this.minute = minute;
+        this.player_a = player_a;
+        this.player_b = player_b;
+        this.game = game;
+        this.commentary = commentary;
+        this.local = local;
+    }
 
     public Play(PlayType type, Integer minute, Player player_a, Player player_b, Game game, String commentary) {
         this.type = type;
@@ -95,5 +106,13 @@ public class Play {
 
     public void setCommentary(String commentary) {
         this.commentary = commentary;
+    }
+
+    public Boolean getLocal() {
+        return local;
+    }
+
+    public void setLocal(Boolean local) {
+        this.local = local;
     }
 }

@@ -14,12 +14,12 @@
                         <div class="row">
                             <div class="col-xs-8 col-xs-offset-2">
                                 <div ng-controller="TeamController as tm">
-                                    <label>Equipo local</label>
+                                    <label>Equipo Visitante</label>
                                     <select class="form-control" ng-model="vm.activeGame.teamA">
                                         <option ng-repeat="team in tm.teams" value="{{team}}">{{team.name}}</option>
                                     </select>
                                     <br/>
-                                    <label>Equipo visitante</label>
+                                    <label>Equipo Local</label>
                                     <select class="form-control" ng-model="vm.activeGame.teamB">
                                         <option ng-repeat="team in tm.teams" value="{{team}}">{{team.name}}</option>
                                     </select>

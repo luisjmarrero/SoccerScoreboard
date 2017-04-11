@@ -31,7 +31,7 @@
         vm.awayPlayers = [];
         vm.getTeamAway = getTeamAway;
         vm.search = "";
-
+        vm.local = false;
         vm.started = false;
         vm.change = change;
         vm.lastGame = [];
@@ -166,6 +166,7 @@
             var url = "/plays/create";
             $http.post(url, vm.newPlay).then(function(response){
                 vm.plays = response.data;
+                getLastGame();
             });
         }
 

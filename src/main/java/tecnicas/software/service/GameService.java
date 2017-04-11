@@ -40,9 +40,15 @@ public class GameService {
         statistic.setRed_local(new Integer(0));
         statistic.setCorner_away(new Integer(0));
         statistic.setCorner_local(new Integer(0));
+        statistic.setOffside_away(new Integer(0));
+        statistic.setOffside_local(new Integer(0));
         game.setStatistic(statistic);
         gameRepository.save(game);
         return getAll();
+    }
+
+    public void updateGame(Game game){
+        gameRepository.save(game);
     }
 
     public List<Game> delete(Integer id) {
