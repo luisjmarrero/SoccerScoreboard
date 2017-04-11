@@ -3,6 +3,7 @@ package tecnicas.software.endpoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tecnicas.software.model.Play;
+import tecnicas.software.model.PlayType;
 import tecnicas.software.repository.PlayerRepository;
 import tecnicas.software.service.PlayService;
 
@@ -35,6 +36,11 @@ public class PlayRestController {
     @RequestMapping(value = "/{type}", method = RequestMethod.GET)
     public List<Play> getByType(@PathVariable String type){
         return playService.getByType(type);
+    }
+
+    @RequestMapping(value = "/types", method = RequestMethod.GET)
+    public List<PlayType> geTypes(){
+        return playService.geTypes();
     }
 
     @RequestMapping(value = "/create")

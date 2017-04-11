@@ -16,6 +16,7 @@
 
         vm.teams = [];
         vm.getAll = getAll;
+        vm.search = "";
 
         init();
 

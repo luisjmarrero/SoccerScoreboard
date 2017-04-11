@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import tecnicas.software.model.Game;
 import tecnicas.software.service.GameService;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 /**
@@ -25,6 +24,11 @@ public class GameRestController {
     @RequestMapping(value = "/all")
     public List<Game> getAll() {
         return gameService.getAll();
+    }
+
+    @RequestMapping(value = "/last", method = RequestMethod.GET)
+    public Game getLast() {
+        return gameService.getLast();
     }
 
     @RequestMapping(value = "/{id}")

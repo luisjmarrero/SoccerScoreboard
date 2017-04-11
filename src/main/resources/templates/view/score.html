@@ -1,225 +1,237 @@
 <!DOCTYPE html>
 <html data-th-include="/layout/layout :: base_layout('Scoreboard')">
 
+<!--vm.getPlays(vm.lastGame); vm.getTeamLocal(vm.lastGame.teamA); vm.getTeamAway(vm.lastGame.teamB)-->
+
 <body>
 <div data-th-fragment="content">
 
-    <div ng-app="app" ng-controller="LiveController as vm">
-        <!-- Score -->
-        <div class="container fsb-center">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="panel panel-default">
+    <div class="col-lg-12">
+        <div ng-app="app" ng-controller="GameController as vm">
+            <!-- Score -->
+            <div class="container fsb-center" ng-init="onloadFun()">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="panel panel-default">
 
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Juego en vivo</h3>
-                        </div>
-
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-4 text-center">Equipo Local</div>
-                                <div class="col-lg-4 text-center">Camp Nou</div>
-                                <div class="col-lg-4 text-center">Equipo Visitante</div>
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Juego en vivo</h3>
                             </div>
 
-                            <div class="row">
-                                <!--<div class="col-lg-12 text-center" ng-model="TimeCtrl.time"> <p>{{ clock  | date:'medium' }}</p></div>-->
-                                <div class="col-lg-12 text-center" >
-                                    <span>{{vm.time}} </span>
-                                </div>
-                                <div class="col-lg-12 text-center">
-                                    <span>{{extra}}</span>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-4 text-center">{{vm.lastGame.teamA.name}}</div>
+                                    <div class="col-lg-4 text-center">{{vm.lastGame.stadio}}</div>
+                                    <div class="col-lg-4 text-center">{{vm.lastGame.teamB.name}}</div>
                                 </div>
 
-                            </div>
+                                <div class="row">
+                                    <!--<div class="col-lg-12 text-center" ng-model="TimeCtrl.time"> <p>{{ clock  | date:'medium' }}</p></div>-->
+                                    <div class="col-lg-12 text-center">
+                                        <strong> {{timerWithTimeout | mmss}} </strong>
+                                    </div>
+                                    <div class="col-lg-12 text-center">
+                                        <span></span>
+                                    </div>
 
-                            <div class="row">
-                                <div class="col-lg-4 text-center">5</div>
-                                <div class="col-lg-4 text-center"></div>
-                                <div class="col-lg-4 text-center">2</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4 text-center">{{vm.lastGame.score_a}}</div>
+                                    <div class="col-lg-4 text-center">vs</div>
+                                    <div class="col-lg-4 text-center">{{vm.lastGame.score_b}}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- Score -->
+                <!-- Score -->
 
-        <!-- Management -->
-        <div class="row">
-            <div align="center">
-                <div class="btn-group btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default btn-success" ng-click="vm.stop()" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"/>
-                    </button>
-                    <button type="button" class="btn btn-default btn-warning" ng-show="!vm.running"
-                            ng-click="vm.change(true) ; vm.start()"  aria-label="Left Align">
-                        <span class="glyphicon glyphicon-play" aria-hidden="true"/>
-                    </button>
-                    <button type="button" class="btn btn-default btn-warning" ng-show="vm.running"
-                            ng-click="vm.change(false)" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-pause" aria-hidden="true"/>
-                    </button>
-                    <button type="button" class="btn btn-default btn-danger" ng-click="vm.stop()" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"/>
-                    </button>
-                </div>
-            </div>
-            <br />
-            <br />
-        </div>
-        <!-- Management -->
-
-        <!-- Tabs -->
-        <div class="row">
-            <div class="container">
-                <ul class="nav nav-tabs nav-justified" role="tablist">
-                    <li class="nav-item"><a href="#playbyplay" class="nav-link" role="tab" data-toggle="tab">Play by
-                        Play</a>
-                    </li>
-                    <li class="nav-item"><a href="#statistics" class="nav-link" role="tab"
-                                            data-toggle="tab">Statistics</a>
-                    </li>
-                    <li class="nav-item"><a href="#linups" class="nav-link" role="tab" data-toggle="tab">Linups</a></li>
-                </ul>
-
-                <!-- Play by play tab -->
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade" id="playbyplay">
-
-                        <div class="row text-center">
-                            <div class="card">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">1</li>
-                                    <li class="list-group-item">2</li>
-                                    <li class="list-group-item">3</li>
-                                    <li class="list-group-item">4</li>
-
-                                </ul>
-                            </div>
+                <!-- Management -->
+                <div class="row">
+                    <div align="center">
+                        <div class="btn-group btn-group" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default btn-success"
+                                    data-toggle="modal"
+                                    data-target="#new_play"
+                                    aria-label="Left Align">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"/>
+                            </button>
+                            <button type="button" class="btn btn-default btn-warning" ng-show="!vm.started"
+                                    ng-click="vm.change(true) ; startTimerWithTimeout()" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-play" aria-hidden="true"/>
+                            </button>
+                            <!--<button type="button" class="btn btn-default btn-warning" ng-show="vm.running"-->
+                            <!--ng-click="vm.change(false) ; resetTimerWithTimeout()" aria-label="Left Align">-->
+                            <!--<span class="glyphicon glyphicon-pause" aria-hidden="true"/>-->
+                            <!--</button>-->
+                            <button type="button" class="btn btn-default btn-danger" ng-show="vm.started"
+                                    ng-click="vm.saveGame()" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-save" aria-hidden="true"/>
+                            </button>
                         </div>
-
-                    </div> <!-- Play by play tab -->
-
-                    <!-- statistics tab-->
-                    <div role="tabpanel" class="tab-pane active text-center" id="statistics">
-                        <h3>Statistics</h3>
-                        <br/>
-
-                        <div class="row text-center">
-                            <!--<div class="col-xs-6 text-center">-->
-                            <table class="table table-hover table-striped">
-                                <tr>
-                                    <td>5</td>
-                                    <th class="text-center">Fouls</th>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <th class="text-center">Tarjetas Amarillas</th>
-                                    <td>3</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <th class="text-center">Tarjetas Rojas</th>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <th class="text-center">Fuera de Lugar</th>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <th class="text-center">Tiros de esquina</th>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <th class="text-center">Atajadas</th>
-                                    <td>5</td>
-                                </tr>
-                            </table>
-                            <!--</div>-->
-                        </div>
-
-                    </div>  <!-- statistics tab-->
-
-                    <!--Linups tab-->
-                    <div role="tabpanel" class="tab-pane fade" id="linups">
-                        <br/>
-                        <!-- Local Team -->
-                        <div class="col-xs-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading" style="text-align: center"><b>Equipo A</b>
-                                </div>
-                                <div class="panel-body">
-                                    <table class="table table-condensed table-summary table-borderless ">
-                                        <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Numero</th>
-                                            <th>Posicion</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>Lionel Messi</td>
-                                            <td>10</td>
-                                            <td>Delantero</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Neymar da Silva</td>
-                                            <td>11</td>
-                                            <td>Delantero</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div> <!-- Local Team -->
-
-                        <!-- Away Team -->
-                        <div class="col-xs-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading" style="text-align: center"><b>Equipo B</b></div>
-                                <div class="panel-body">
-                                    <table class="table table-condensed table-summary table-borderless ">
-                                        <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Numero</th>
-                                            <th>Posicion</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>Cristiano Ronaldo</td>
-                                            <td>7</td>
-                                            <td>Delantero</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Away Team -->
                     </div>
-                    <!--Linups tab-->
+                    <br/>
+                    <br/>
                 </div>
+                <!-- Management -->
+
+                <!-- Tabs -->
+                <div class="row">
+                    <div class="container">
+                        <ul class="nav nav-tabs nav-justified" role="tablist">
+                            <li class="nav-item"><a href="#playbyplay" class="nav-link" role="tab" data-toggle="tab">Play
+                                by
+                                Play</a>
+                            </li>
+                            <li class="nav-item"><a href="#statistics" class="nav-link" role="tab"
+                                                    data-toggle="tab">Statistics</a>
+                            </li>
+                            <li class="nav-item"><a href="#linups" class="nav-link" role="tab"
+                                                    data-toggle="tab">Linups</a>
+                            </li>
+                        </ul>
+
+                        <!-- Play by play tab -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade" id="playbyplay">
+                                <br/>
+                                <div class="col-xs-12 text-center">
+                                    <div class="row text-center">
+                                        <div class="card">
+                                            <ul class="list-group list-group-flush">
+                                                <div class="alert alert-info" ng-repeat="play in vm.plays">
+                                                    <strong>{{play.minute + ' - ' + ' ' + play.player_a.team.name + ' -
+                                                        ' +
+                                                        play.player_a.name + ' ' +
+                                                        play.player_a.lastName + ' - '}} </strong>
+                                                    {{play.type.type + '!! - ' +
+                                                    play.type.message}}
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Play by play tab -->
+
+                            <!-- statistics tab-->
+                            <div role="tabpanel" class="tab-pane active text-center" id="statistics">
+                                <h3>Statistics</h3>
+                                <br/>
+
+                                <div class="row text-center">
+                                    <!--<div class="col-xs-6 text-center">-->
+                                    <table class="table table-hover table-striped">
+                                        <!--<tr>-->
+                                        <!--<td>{{vm.lastGame.statistic.posesion_local}} %</td>-->
+                                        <!--<th class="text-center">Posesion</th>-->
+                                        <!--<td>{{vm.lastGame.statistic.posesion_away}} %</td>-->
+                                        <!--</tr>-->
+                                        <tr>
+                                            <td>{{vm.lastGame.statistic.fouls_local}}</td>
+                                            <th class="text-center">Fouls</th>
+                                            <td>{{vm.lastGame.statistic.fouls_away}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{vm.lastGame.statistic.yellow_local}}</td>
+                                            <th class="text-center">Tarjetas Amarillas</th>
+                                            <td>{{vm.lastGame.statistic.yellow_away}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{vm.lastGame.statistic.red_local}}</td>
+                                            <th class="text-center">Tarjetas Rojas</th>
+                                            <td>{{vm.lastGame.statistic.red_local}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{vm.lastGame.statistic.offside_local}}</td>
+                                            <th class="text-center">Fuera de Lugar</th>
+                                            <td>{{vm.lastGame.statistic.offside_away}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{vm.lastGame.statistic.corner_local}}</td>
+                                            <th class="text-center">Tiros de esquina</th>
+                                            <td>{{vm.lastGame.statistic.corner_away}}</td>
+                                        </tr>
+                                        <!--<tr>-->
+                                        <!--<td>{{vm.lastGame.statistic.red_local}}</td>-->
+                                        <!--<th class="text-center">Atajadas</th>-->
+                                        <!--<td>{{vm.lastGame.statistic.red_local}}</td>-->
+                                        <!--</tr>-->
+                                    </table>
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                            <!-- statistics tab-->
+
+                            <!--Linups tab-->
+                            <div role="tabpanel" class="tab-pane fade" id="linups">
+                                <br/>
+                                <!-- Local Team -->
+                                <div class="col-xs-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" style="text-align: center"><b>Jugadores del
+                                            {{vm.lastGame.teamA.name}}</b>
+                                        </div>
+                                        <div class="panel-body">
+                                            <table class="table table-bordered table-hover table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-center">Nombre</th>
+                                                    <th class="text-center">Numero</th>
+                                                    <th class="text-center">Posicion</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="localPlayer in vm.localPlayers">
+                                                    <td>{{localPlayer.name + ' ' + localPlayer.lastName}}</td>
+                                                    <td>{{localPlayer.number}}</td>
+                                                    <td>{{localPlayer.position}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Local Team -->
+
+                                <!-- Away Team -->
+                                <div class="col-xs-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" style="text-align: center"><b>Jugadores del
+                                            {{vm.lastGame.teamB.name}}</b></div>
+                                        <div class="panel-body">
+                                            <table class="table table-bordered table-hover table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-center">Nombre</th>
+                                                    <th class="text-center">Numero</th>
+                                                    <th class="text-center">Posicion</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="awayPlayer in vm.awayPlayers">
+                                                    <td>{{awayPlayer.name + ' ' + awayPlayer.lastName}}</td>
+                                                    <td>{{awayPlayer.number}}</td>
+                                                    <td>{{awayPlayer.position}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Away Team -->
+                            </div>
+                            <!--Linups tab-->
+                        </div>
+                    </div>
+                </div>
+                <!-- Tabs -->
+
+                <div data-th-include="forms/new_play:: new-play-modal"/>
+
             </div>
         </div>
-        <!-- Tabs -->
-
-
-
-        <!--<script type="text/javascript" src="/static/app/live.controller.js"-->
-                <!--data-th-src="@{/app/live.controller.js}"></script>-->
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>-->
-        <!--<script type="text/javascript" src="/static/app/clock.js" data-th-src="@{/app/clock.js}"></script>-->
-
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
-        <!--<script type="text/javascript" src="../static/js/bootstrap.js" data-th-src="@{/js/bootstrap.js}"></script>-->
     </div>
 </div>
 </body>

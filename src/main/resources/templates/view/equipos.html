@@ -9,10 +9,11 @@
                 <div class="container-fluid">
                     <!-- Start of Search bar -->
                     <form class="navbar-form navbar-right">
+                        <span class="glyphicon glyphicon-search"></span>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Buscar"/>
+                            <input type="text" class="form-control" placeholder="Buscar"
+                                   ng-model="vm.search"/>
                         </div>
-                        <button type="submit" class="btn btn-default">Buscar</button>
                     </form>
                     <!-- End of Search bar -->
 
@@ -42,7 +43,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="team in vm.teams">
+                        <tr ng-repeat="team in vm.teams | filter:vm.search ">
                             <td>{{team.name}}</td>
                             <td>
                                 <div class="btn-group btn-group" role="group" aria-label="...">

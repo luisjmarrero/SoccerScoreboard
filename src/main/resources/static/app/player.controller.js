@@ -15,21 +15,24 @@
         var pm = this;
 
         pm.players = [];
+        pm.teams = [];
         pm.getAll = getAll;
         pm.getAllOrderedByTeam = getAllOrderedByTeam;
         pm.numbers = [];
         pm.fillNumbers = fillNumbers;
         pm.activePlayer = {};
         pm.changeActivePlayer = changeActivePlayer;
-        $scope.newPlayer = {};
-        $scope.team = {};
+        pm.newPlayer = {};
+        pm.team = {};
         pm.deletePlayer = deletePlayer;
-        pm.getTeam = getTeam;
+        pm.search = "";
+        pm.getTeams = getTeams;
 
         init();
 
         function init(){
             getAll();
+            getTeams();
             fillNumbers();
         }
 
@@ -42,7 +45,7 @@
         }
 
         function getAllOrderedByTeam(){
-            alert('got it!');
+            // alert('got it!');
             var url = "/players/all/ordered/team";
             var gamePromise = $http.get(url);
             gamePromise.then(function(response){
@@ -56,34 +59,40 @@
             }
         }
 
-        // FIXME
         function changeActivePlayer(index) {
             pm.activePlayer = index;
         }
 
         $scope.createPlayer = function (){
-            // alert($scope.newPlayer.team);
-            var url = "/players/create"
-            $scope.newPlayer.team = $scope.team;
-            $http.post(url, $scope.newPlayer).then(function(response){
+            var jsonObj = JSON.parse(pm.team);
+            pm.newPlayer.team = jsonObj;
+            var url = "/players/create";
+            console.debug(pm.newPlayer);
+            $http.post(url, pm.newPlayer).then(function(response){
                 pm.players = response.data;
             });
         }
 
-        function getTeam(id) {
-            var url = "/teams/" + id
-            $scope.newPlayer.team = $scope.team;
-            $http.post(url, $scope.newPlayer).then(function(response){
-                pm.players = response.data;
+        function getTeams(){
+            var url = "/teams/all";
+            var gamePromise = $http.get(url);
+            gamePromise.then(function(response){
+                pm.teams = response.data;
             });
         }
 
         function deletePlayer(id){
-            var url = "/players/delete/" + id;
-            $http.delete(url).then(function(response){
-                pm.players = response.data;
-            });
+            var isConfirmed = confirm("Seguro que desea borrar este juego?", false);
+            if (isConfirmed) {
+                var url = "/players/delete/" + id;
+                $http.delete(url).then(function (response) {
+                    pm.players = response.data;
+                });
+            } else {
+                return false;
+            }
         }
+
     }
 
 })();
