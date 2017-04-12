@@ -31,7 +31,7 @@
         init();
 
         function init(){
-            getAll();
+            getAllOrderedByTeam();
             getTeams();
             fillNumbers();
         }
@@ -45,7 +45,6 @@
         }
 
         function getAllOrderedByTeam(){
-            // alert('got it!');
             var url = "/players/all/ordered/team";
             var gamePromise = $http.get(url);
             gamePromise.then(function(response){
@@ -60,6 +59,7 @@
         }
 
         function changeActivePlayer(index) {
+            // console.log(index);
             pm.activePlayer = index;
         }
 
@@ -67,8 +67,18 @@
             var jsonObj = JSON.parse(pm.team);
             pm.newPlayer.team = jsonObj;
             var url = "/players/create";
-            console.debug(pm.newPlayer);
+            // console.debug(pm.newPlayer);
             $http.post(url, pm.newPlayer).then(function(response){
+                pm.players = response.data;
+            });
+        }
+
+        $scope.updatePlayer = function () {
+            var jsonObj = JSON.parse(pm.team);
+            pm.activePlayer.team = jsonObj;
+            // console.log(pm.activePlayer);
+            var url = "/players/update";
+            $http.put(url, pm.activePlayer).then(function (response) {
                 pm.players = response.data;
             });
         }
@@ -82,7 +92,7 @@
         }
 
         function deletePlayer(id){
-            var isConfirmed = confirm("Seguro que desea borrar este juego?", false);
+            var isConfirmed = confirm("Seguro que desea borrar este jugador?", false);
             if (isConfirmed) {
                 var url = "/players/delete/" + id;
                 $http.delete(url).then(function (response) {

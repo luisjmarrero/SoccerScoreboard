@@ -14,7 +14,6 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer team_id;
     private String name;
-//    private List<Player> players;
 
     public Team() {
         super();
@@ -23,11 +22,6 @@ public class Team {
     public Team(String name) {
         this.name = name;
     }
-
-    //    public Team(String name, List<Player> players) {
-//        this.name = name;
-//        this.players = players;
-//    }
 
     public Integer getTeam_id() {
         return team_id;
@@ -45,12 +39,4 @@ public class Team {
         this.name = name;
     }
 
-//    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-//    public List<Player> getPlayers() {
-//        return players;
-//    }
-//
-//    public void setPlayers(List<Player> players) {
-//        this.players = players;
-//    }
 }

@@ -24,9 +24,8 @@ public class TeamService {
         return teamRepository.findAll();
     }
 
-    // FIXME - Explota (HTTP Status = 500)
-    public List<Team> getByName(String team){
-        return teamRepository.findByNameLike(team);
+    public Team getByID(Integer id) {
+        return teamRepository.findOne(id);
     }
 
     public List<Team> create(Team team){
@@ -34,8 +33,8 @@ public class TeamService {
         return teamRepository.findAll();
     }
 
-    public Team updateByNumber(Integer id, Team team) {
-        Team update = teamRepository.findOne(id);
+    public Team update(Team team) {
+        Team update = teamRepository.findOne(team.getTeam_id());
         update.setName(team.getName());
         return teamRepository.save(update);
     }
@@ -45,7 +44,4 @@ public class TeamService {
         return teamRepository.findAll();
     }
 
-    public Team getByID(Integer id) {
-        return teamRepository.findOne(id);
-    }
 }

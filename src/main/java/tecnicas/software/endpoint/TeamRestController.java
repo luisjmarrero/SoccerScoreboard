@@ -26,12 +26,6 @@ public class TeamRestController {
         return teamService.getAll();
     }
 
-    // FIXME - Explota (HTTP Status = 500)
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
-    public List<Team> getByName(@PathVariable String team){
-        return teamService.getByName(team);
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Team getById(@PathVariable Integer id){
         return teamService.getByID(id);
@@ -39,17 +33,16 @@ public class TeamRestController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public List<Team> create(@RequestBody Team team) {
-
         return teamService.create(team);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/{id}")
-    public Team updateByNumber(@PathVariable Integer id, @RequestBody Team team) {
-        return teamService.updateByNumber(id, team);
+    @RequestMapping(value = "/update", method=RequestMethod.PUT)
+    public Team update(@RequestBody Team team) {
+        return teamService.update(team);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public List<Team> remove(@RequestParam(value="id", required = true) @PathVariable Integer id){
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public List<Team> remove(@PathVariable Integer id){
         return teamService.remove(id);
     }
 

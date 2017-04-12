@@ -43,12 +43,12 @@ public class PlayRestController {
         return playService.geTypes();
     }
 
-    @RequestMapping(value = "/create")
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public List<Play> create(@RequestBody Play player){
         return playService.create(player);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/{id}")
+    @RequestMapping(value = "/update", method=RequestMethod.PUT)
     public Play updateById(@PathVariable Integer id, @RequestBody Play player) {
         return playService.updateById(id, player);
     }

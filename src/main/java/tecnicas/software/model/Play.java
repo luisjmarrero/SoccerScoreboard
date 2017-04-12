@@ -20,11 +20,8 @@ public class Play {
     private PlayType type;
     private Integer minute;
     @ManyToOne
-    @JoinColumn(name = "player_id_a")
-    private Player player_a;
-    @ManyToOne
-    @JoinColumn(name = "player_id_b")
-    private Player player_b;
+    @JoinColumn(name = "player_id")
+    private Player player;
     @ManyToOne
     @JoinColumn(name = "game_id")
     private Game game;
@@ -33,23 +30,13 @@ public class Play {
 
     public Play() {}
 
-    public Play(PlayType type, Integer minute, Player player_a, Player player_b, Game game, String commentary, Boolean local) {
+    public Play(PlayType type, Integer minute, Player player, Game game, String commentary, Boolean local) {
         this.type = type;
         this.minute = minute;
-        this.player_a = player_a;
-        this.player_b = player_b;
+        this.player = player;
         this.game = game;
         this.commentary = commentary;
         this.local = local;
-    }
-
-    public Play(PlayType type, Integer minute, Player player_a, Player player_b, Game game, String commentary) {
-        this.type = type;
-        this.minute = minute;
-        this.player_a = player_a;
-        this.player_b = player_b;
-        this.game = game;
-        this.commentary = commentary;
     }
 
     public Integer getPlay_id() {
@@ -77,19 +64,11 @@ public class Play {
     }
 
     public Player getPlayer_a() {
-        return player_a;
+        return player;
     }
 
-    public void setPlayer_a(Player player_a) {
-        this.player_a = player_a;
-    }
-
-    public Player getPlayer_b() {
-        return player_b;
-    }
-
-    public void setPlayer_b(Player player_b) {
-        this.player_b = player_b;
+    public void setPlayer_a(Player player) {
+        this.player = player;
     }
 
     public Game getGame() {

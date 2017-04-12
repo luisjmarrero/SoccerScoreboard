@@ -61,17 +61,6 @@ public class PlayService {
     }
 
     private void updateStatistics(Play play) {
-        /*
-                Gol
-                Fuera de Lugar
-                Tiro Libre
-                Pase
-                Falta
-                Tarjeta Roja
-                Tarjeta Amarilla
-                Tiro de esquina
-
-         */
         Integer aux = new Integer(0);
         if (play.getLocal()) {
             switch (play.getType().getType()) {

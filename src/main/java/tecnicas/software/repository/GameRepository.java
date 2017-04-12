@@ -15,4 +15,7 @@ public interface GameRepository extends JpaRepository<Game, Integer> {
 
     @Query(value ="SELECT * FROM games ORDER BY game_id DESC LIMIT 1",  nativeQuery = true)
     Game findLastGame();
+
+    @Query(value ="SELECT * FROM games ORDER BY date DESC",  nativeQuery = true)
+    List<Game> findAllOrOrderByDateDesc();
 }

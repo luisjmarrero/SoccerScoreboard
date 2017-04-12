@@ -54,17 +54,14 @@
                             <button type="button" class="btn btn-default btn-success"
                                     data-toggle="modal"
                                     data-target="#new_play"
-                                    aria-label="Left Align">
+                                    aria-label="Left Align"
+                                    ng-show="vm.started">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"/>
                             </button>
                             <button type="button" class="btn btn-default btn-warning" ng-show="!vm.started"
                                     ng-click="vm.change(true) ; startTimerWithTimeout()" aria-label="Left Align">
                                 <span class="glyphicon glyphicon-play" aria-hidden="true"/>
                             </button>
-                            <!--<button type="button" class="btn btn-default btn-warning" ng-show="vm.running"-->
-                            <!--ng-click="vm.change(false) ; resetTimerWithTimeout()" aria-label="Left Align">-->
-                            <!--<span class="glyphicon glyphicon-pause" aria-hidden="true"/>-->
-                            <!--</button>-->
                             <button type="button" class="btn btn-default btn-danger" ng-show="vm.started"
                                     ng-click="vm.saveGame()" aria-label="Left Align">
                                 <span class="glyphicon glyphicon-save" aria-hidden="true"/>

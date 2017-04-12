@@ -41,14 +41,16 @@ public class PlayerService {
         return playerRepository.findAll();
     }
 
-    public Player updateByNumber(Integer id, Player player) {
-        Player update = playerRepository.findOne(id);
+    public List<Player> updateByNumber(Player player) {
+        Player update = playerRepository.findOne(player.getPlayer_id());
         update.setName(player.getName());
         update.setLastName(player.getLastName());
         update.setPosition(player.getPosition());
         update.setNumber(player.getNumber());
         update.setTeam(player.getTeam());
-        return playerRepository.save(update);
+        Player p = playerRepository.save(update);
+        System.out.println(p.toString());
+        return getAllOrderedByTeam();
     }
 
     public List<Player> remove(Integer id){

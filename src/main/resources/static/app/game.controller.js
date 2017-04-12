@@ -60,7 +60,7 @@
         }
 
         function getAll(){
-            var url = "/games/all";
+            var url = "/games/all/ordered";
             var gamePromise = $http.get(url);
             gamePromise.then(function(response){
                 vm.games = response.data;

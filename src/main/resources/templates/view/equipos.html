@@ -46,11 +46,15 @@
                         <tr ng-repeat="team in vm.teams | filter:vm.search ">
                             <td>{{team.name}}</td>
                             <td>
+                                <!-- TODO: CREATE EDIT FORM -->
                                 <div class="btn-group btn-group" role="group" aria-label="...">
-                                    <button type="button" class="btn btn-default" aria-label="Left Align">
+                                    <button type="button" class="btn btn-default" data-toggle="modal"
+                                            ng-click="vm.changeActiveTeam(team)" data-target="#edit_team"
+                                            aria-label="Left Align">
                                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"/>
                                     </button>
-                                    <button type="button" class="btn btn-default btn-danger" aria-label="Left Align">
+                                    <button type="button" class="btn btn-default btn-danger"
+                                            ng-click="vm.deleteTeam(team.team_id)" aria-label="Left Align">
                                         <span class="glyphicon glyphicon-trash" aria-hidden="true"/>
                                     </button>
                                 </div>

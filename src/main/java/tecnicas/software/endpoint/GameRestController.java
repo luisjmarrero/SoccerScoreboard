@@ -21,9 +21,14 @@ public class GameRestController {
         this.gameService = gameService;
     }
 
-    @RequestMapping(value = "/all")
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Game> getAll() {
         return gameService.getAll();
+    }
+
+    @RequestMapping(value = "/all/ordered", method = RequestMethod.GET)
+    public List<Game> getAllOrdered() {
+        return gameService.getOrdered();
     }
 
     @RequestMapping(value = "/last", method = RequestMethod.GET)
@@ -31,7 +36,7 @@ public class GameRestController {
         return gameService.getLast();
     }
 
-    @RequestMapping(value = "/{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Game getById(@PathVariable Integer id) {
         return gameService.getByID(id);
     }

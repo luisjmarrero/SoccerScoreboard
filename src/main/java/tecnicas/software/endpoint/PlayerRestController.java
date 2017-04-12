@@ -46,9 +46,9 @@ public class PlayerRestController {
         return playerService.create(player);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/{id}")
-    public Player updateByNumber(@PathVariable Integer id, @RequestBody Player player) {
-        return playerService.updateByNumber(id, player);
+    @RequestMapping(value = "/update", method=RequestMethod.PUT)
+    public List<Player> updateByNumber(@RequestBody Player player) {
+        return playerService.updateByNumber(player);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)

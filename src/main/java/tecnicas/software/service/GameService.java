@@ -24,6 +24,10 @@ public class GameService {
         return gameRepository.findAll();
     }
 
+    public List<Game> getOrdered(){
+        return gameRepository.findAllOrOrderByDateDesc();
+    }
+
     public Game getByID(Integer id){
         return gameRepository.findOne(id);
     }
