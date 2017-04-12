@@ -6,6 +6,7 @@ import tecnicas.software.model.Game;
 import tecnicas.software.model.Statistic;
 import tecnicas.software.repository.GameRepository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,6 +48,7 @@ public class GameService {
         statistic.setOffside_away(new Integer(0));
         statistic.setOffside_local(new Integer(0));
         game.setStatistic(statistic);
+        game.setDate(new Date());
         gameRepository.save(game);
         return getAll();
     }
@@ -61,6 +63,9 @@ public class GameService {
     }
 
     public Game getLast() {
-        return gameRepository.findLastGame();
+        Game game = gameRepository.findLastGame();
+//        game.setDate(game.getDate());
+        System.err.println(game.getDate());
+        return game;
     }
 }

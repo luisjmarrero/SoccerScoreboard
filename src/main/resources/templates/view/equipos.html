@@ -46,7 +46,6 @@
                         <tr ng-repeat="team in vm.teams | filter:vm.search ">
                             <td>{{team.name}}</td>
                             <td>
-                                <!-- TODO: CREATE EDIT FORM -->
                                 <div class="btn-group btn-group" role="group" aria-label="...">
                                     <button type="button" class="btn btn-default" data-toggle="modal"
                                             ng-click="vm.changeActiveTeam(team)" data-target="#edit_team"
@@ -63,6 +62,7 @@
                         </tbody>
                     </table>
                     <div data-th-replace="forms/new_team:: new-team-modal"/>
+                    <div data-th-replace="forms/edit_team:: edit-team-modal"/>
                 </div>
             </div>
         </div>
