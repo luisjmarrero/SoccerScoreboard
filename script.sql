@@ -60,7 +60,7 @@ COMMIT ;
 -- Create Statistics
 INSERT INTO statistics (statistic_id, corner_away, corner_local, fouls_away, fouls_local, offside_away, offside_local, posesion_away, posesion_local, red_away, red_local, yellow_away, yellow_local, game_id)
     VALUES (nextval('hibernate_sequence'),1 ,3,6,9,0,
-                                          0,0,0,0,0,3,0,168);;
+                                          0,0,0,0,0,3,4,168);;
 COMMIT ;
 
 -- Create Game
