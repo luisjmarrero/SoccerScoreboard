@@ -44,6 +44,8 @@
         vm.teamSelected = {};
         vm.newPlay = {};
 
+        vm.newGame = {};
+
         init();
 
         function init(){
@@ -171,12 +173,12 @@
         }
 
         $scope.createGame = function () {
-            console.log(vm.activeGame);
-            vm.activeGame.teamA = JSON.parse(vm.activeGame.teamA);
-            vm.activeGame.teamB = JSON.parse(vm.activeGame.teamB);
+            console.log(vm.newGame);
+            vm.newGame.teamA = JSON.parse(vm.newGame.teamA);
+            vm.newGame.teamB = JSON.parse(vm.newGame.teamB);
 
             var url = "/games/create";
-            $http.post(url, vm.activeGame).then(function(response){
+            $http.post(url, vm.newGame).then(function(response){
                 vm.games = response.data;
             });
 
@@ -201,9 +203,9 @@
             }
             $scope.onTimeout = function () {
                 if ($scope.timerWithTimeout < 5400) $scope.timerWithTimeout++;
-                $scope.myTimeout = $timeout($scope.onTimeout, 1000);
+                $scope.myTimeout = $timeout($scope.onTimeout, 10);
             }
-            $scope.myTimeout = $timeout($scope.onTimeout, 1000);
+            $scope.myTimeout = $timeout($scope.onTimeout, 10);
         };
     }
 

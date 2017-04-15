@@ -15,18 +15,18 @@
                             <div class="col-xs-8 col-xs-offset-2">
                                 <div ng-controller="TeamController as tm">
                                     <label>Equipo Visitante</label>
-                                    <select class="form-control" ng-model="vm.activeGame.teamA">
+                                    <select class="form-control" ng-model="vm.newGame.teamA">
                                         <option ng-repeat="team in tm.teams" value="{{team}}">{{team.name}}</option>
                                     </select>
                                     <br/>
                                     <label>Equipo Local</label>
-                                    <select class="form-control" ng-model="vm.activeGame.teamB">
+                                    <select class="form-control" ng-model="vm.newGame.teamB">
                                         <option ng-repeat="team in tm.teams" value="{{team}}">{{team.name}}</option>
                                     </select>
                                 </div>
                                 <br/>
                                 <label>Estadio</label>
-                                <input class="form-control" ng-model="vm.activeGame.stadio"/>
+                                <input class="form-control" ng-model="vm.newGame.stadio"/>
                                 <p class="help-block">Ej: Camp Nou</p>
                                 <br/>
                                 <div align="center">
