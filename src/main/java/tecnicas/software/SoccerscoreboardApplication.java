@@ -32,7 +32,6 @@ public class SoccerscoreboardApplication {
 				.useDefaultResponseMessages(false)
 				.apiInfo(apiInfo())
 				.select()
-//				.paths(Predicates.not(regex("/error.*")))
 				.paths(Predicates.or(
 						regex("/games.*"),
 						regex("/players.*"),

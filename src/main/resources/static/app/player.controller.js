@@ -24,6 +24,7 @@
         pm.changeActivePlayer = changeActivePlayer;
         pm.newPlayer = {};
         pm.team = {};
+        pm.newPlayerTeam = {};
         pm.deletePlayer = deletePlayer;
         pm.search = "";
         pm.getTeams = getTeams;
@@ -64,7 +65,7 @@
         }
 
         $scope.createPlayer = function (){
-            var jsonObj = JSON.parse(pm.team);
+            var jsonObj = JSON.parse(pm.newPlayerTeam);
             pm.newPlayer.team = jsonObj;
             var url = "/players/create";
             // console.debug(pm.newPlayer);

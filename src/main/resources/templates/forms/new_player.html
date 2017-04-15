@@ -17,18 +17,20 @@
                             <form name="newPlayerForm" ng-submit="createPlayer()">
                                 <div class="form-group">
                                     <label>Nombre</label>
-                                    <input type="text" name="name" class="form-control" ng-model="pm.newPlayer.name"/>
+                                    <input type="text" name="name" class="form-control" ng-model="pm.newPlayer.name"
+                                    required="required"/>
                                     <!--<span ng-show="errorName">{{errorName}}</span>-->
                                 </div>
                                 <div class="form-group">
                                     <label>Apellido</label>
                                     <input type="text" name="lastName" class="form-control"
-                                           ng-model="pm.newPlayer.lastName"/>
+                                           ng-model="pm.newPlayer.lastName" required="required"/>
                                     <!--<span ng-show="errorUserName">{{errorUserName}}</span>-->
                                 </div>
                                 <div class="form-group">
                                     <label>Numero</label>
-                                    <select class="form-control" ng-model="pm.newPlayer.number">
+                                    <select class="form-control" ng-model="pm.newPlayer.number"
+                                        required="required">
                                         <option ng-repeat="number in pm.numbers">
                                             {{number}}
                                         </option>
@@ -37,13 +39,13 @@
                                 <div class="form-group">
                                     <label>Posision</label>
                                     <input type="text" name="position" class="form-control"
-                                           ng-model="pm.newPlayer.position"/>
+                                           ng-model="pm.newPlayer.position" required="required"/>
                                     <!--<span ng-show="errorUserName">{{errorUserName}}</span>-->
                                 </div>
 
                                 <div class="form-group" ng-controller="TeamController as vm">
                                     <label>Equipo</label>
-                                    <select class="form-control" ng-model="pm.team">
+                                    <select class="form-control" ng-model="pm.team" required="required">
                                         <option ng-repeat="team in pm.teams" value="{{team}}">{{team.name}}
                                         </option>
                                     </select>
@@ -51,7 +53,7 @@
 
 
                                 <button type="submit" class="btn btn-default btn-success" onclick="$('.modal').modal('hide')"
-                                        aria-label="Left Align">
+                                        aria-label="Left Align" ng-disabled="newPlayerForm.$error.required">
                                     Guardar
                                 </button>
                                 <button type="button" class="btn btn-default btn-danger" data-dismiss="modal"
