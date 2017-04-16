@@ -33,7 +33,7 @@
         vm.search = "";
         vm.local = false;
         vm.started = false;
-        vm.change = change;
+        // vm.change = change;
         vm.lastGame = [];
         vm.getLastGame = getLastGame;
         vm.getLastPlays = getLastPlays;
@@ -46,6 +46,7 @@
 
         vm.newGame = {};
         vm.equalTeams = false;
+        vm.manual = false;
 
         init();
 
@@ -124,7 +125,6 @@
                 getTeamAwayCurrent();
             });
 
-
         }
 
         function getLastPlays() {
@@ -165,6 +165,7 @@
             vm.newPlay.player_a = JSON.parse(vm.newPlay.player_a);
             vm.newPlay.game = vm.lastGame;
             vm.newPlay.minute = $scope.timerWithTimeout / 60;
+            console.log(vm.newPlay);
             var url = "/plays/create";
             $http.post(url, vm.newPlay).then(function (response) {
                 vm.plays = response.data;
@@ -176,12 +177,6 @@
             console.log(vm.newGame);
             vm.newGame.teamA = JSON.parse(vm.newGame.teamA);
             vm.newGame.teamB = JSON.parse(vm.newGame.teamB);
-
-            // if (vm.newGame.teamA.name == vm.newGame.teamB.name) {
-            //     // alert('Error!! - Los equipos no pueden ser iguales!');
-            //     vm.equalTeams = true;
-            //     // vm.newGame = {}
-            // } else {
 
             var url = "/games/create";
             $http.post(url, vm.newGame).then(function (response) {
@@ -204,13 +199,18 @@
             getLastGame();
         };
 
-        function change(value) {
-            vm.started = value;
-        }
+        // function change(value) {
+        //     vm.started = value;
+        // }
 
         //timer with timeout
         $scope.timerWithTimeout = 0;
+        $scope.turnSimutalte = 0;
+        $scope.lastPlay = 0;
+
         $scope.startTimerWithTimeout = function () {
+            vm.started = true;
+            vm.manual = true;
             $scope.timerWithTimeout = 0;
             if ($scope.myTimeout) {
                 $timeout.cancel($scope.myTimeout);
@@ -221,6 +221,64 @@
             };
             $scope.myTimeout = $timeout($scope.onTimeout, 10);
         };
+
+        $scope.simulate = function () {
+            vm.started = true;
+            $scope.timerWithTimeout = 0;
+            if ($scope.myTimeout) {
+                $timeout.cancel($scope.myTimeout);
+            }
+            $scope.onTimeout = function () {
+                if ($scope.timerWithTimeout < 5400) {
+                    $scope.timerWithTimeout++;
+
+                    // select a random play
+                    if ($scope.turnSimutalte == 0 && $scope.timerWithTimeout > ($scope.lastPlay + 300)) {
+                        var ramdonPlayHome = {
+                            team: vm.activeGame.teamA,
+                            player_a: vm.localPlayers[Math.floor(Math.random() * vm.localPlayers.length)],
+                            game: vm.lastGame,
+                            minute: $scope.timerWithTimeout / 60,
+                            local: true,
+                            type: vm.playTypes[Math.floor(Math.random() * vm.playTypes.length)]
+                        };
+
+                        $scope.lastPlay = $scope.timerWithTimeout;
+
+                        var url = "/plays/create";
+                        $http.post(url, ramdonPlayHome).then(function (response) {
+                            vm.plays = response.data;
+                            getLastGame();
+                        });
+
+                        $scope.turnSimutalte = 1;
+                    } else if ($scope.turnSimutalte == 1 && $scope.timerWithTimeout > ($scope.lastPlay + 300)) {
+                        var ramdonPlayAway = {
+                            team: vm.activeGame.teamB,
+                            player_a: vm.awayPlayers[Math.floor(Math.random() * vm.awayPlayers.length)],
+                            game: vm.lastGame,
+                            minute: $scope.timerWithTimeout / 60,
+                            local: false,
+                            type: vm.playTypes[Math.floor(Math.random() * vm.playTypes.length)]
+                        };
+
+                        $scope.lastPlay = $scope.timerWithTimeout;
+
+                        var url = "/plays/create";
+                        $http.post(url, ramdonPlayAway).then(function (response) {
+                            vm.plays = response.data;
+                            getLastGame();
+                        });
+
+                        $scope.turnSimutalte = 0;
+                    }
+
+
+                }
+                $scope.myTimeout = $timeout($scope.onTimeout, 10);
+            };
+            $scope.myTimeout = $timeout($scope.onTimeout, 10);
+        }
     }
 
     function mmss() {
