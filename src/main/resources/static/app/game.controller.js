@@ -47,6 +47,7 @@
         vm.newGame = {};
         vm.equalTeams = false;
         vm.manual = false;
+        vm.ended = false;
 
         init();
 
@@ -152,7 +153,7 @@
         }
 
         function saveGame() {
-            var isConfirmed = confirm("Seguro que desea guardar este juego?", false);
+            var isConfirmed = confirm("Seguro que desea salir de esta pantalla?", false);
             if (isConfirmed) {
                 $window.location.href = '/juegos';
             } else {
@@ -216,7 +217,13 @@
                 $timeout.cancel($scope.myTimeout);
             }
             $scope.onTimeout = function () {
-                if ($scope.timerWithTimeout < 5400) $scope.timerWithTimeout++;
+                if ($scope.timerWithTimeout < 5400) {
+                    $scope.timerWithTimeout++;
+                } else {
+                    // alert('El partido ha terminado!');
+                    vm.ended = true;
+                    vm.manual = false;
+                }
                 $scope.myTimeout = $timeout($scope.onTimeout, 10);
             };
             $scope.myTimeout = $timeout($scope.onTimeout, 10);
@@ -274,6 +281,10 @@
                     }
 
 
+                } else {
+                    // alert('El partido ha terminado!');
+                    vm.ended = true;
+                    vm.manual = false;
                 }
                 $scope.myTimeout = $timeout($scope.onTimeout, 10);
             };

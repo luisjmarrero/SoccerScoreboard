@@ -13,7 +13,8 @@
                     <form name="newGameForm" ng-submit="createGame()">
                         <div class="alert alert-danger"
                             ng-show="vm.equalTeams">
-                            <strong>Error!</strong> Los equipos no pueden ser iguales!
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            <strong>Los equipos no pueden ser iguales!</strong>
                         </div>
                         <div class="row">
                             <div class="col-xs-8 col-xs-offset-2">

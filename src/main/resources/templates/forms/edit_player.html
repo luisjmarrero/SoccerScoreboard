@@ -15,18 +15,18 @@
                                 <div class="form-group">
                                     <label>Nombre</label>
                                     <input class="form-control" type="text" ng-model="pm.activePlayer.name"
-                                           value="{{pm.activePlayer.name}}"/>
+                                           value="{{pm.activePlayer.name}}" required="required"/>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Apellido</label>
                                     <input class="form-control" ng-model="pm.activePlayer.lastName"
-                                           value="{{pm.activePlayer.lastName}}"/>
+                                           value="{{pm.activePlayer.lastName}}" required="required"/>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Numero</label>
-                                    <select class="form-control" ng-model="pm.activePlayer.number">
+                                    <select class="form-control" ng-model="pm.activePlayer.number" required="required">
                                         <!--<option>{{pm.activePlayer.number}}</option>-->
                                         <option ng-repeat="number in pm.numbers">{{number}}</option>
                                     </select>
@@ -35,12 +35,12 @@
                                 <div class="form-group">
                                     <label>Posision</label>
                                     <input class="form-control" type="text" ng-model="pm.activePlayer.position"
-                                           value="{{pm.activePlayer.position}}"/>
+                                           value="{{pm.activePlayer.position}}" required="required"/>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Equipo</label>
-                                    <select class="form-control" ng-model="pm.team">
+                                    <select class="form-control" ng-model="pm.team" required="required  ">
                                         <!--<option>{{pm.activePlayer.team.name}}</option>-->
                                         <option ng-repeat="team in pm.teams" value="{{team}}">{{team.name}}
                                         </option>
@@ -48,7 +48,7 @@
                                 </div>
 
                                 <button type="submit" class="btn btn-default btn-success" aria-label="Left Align"
-                                        onclick="$('.modal').modal('hide')">
+                                        onclick="$('.modal').modal('hide')" ng-disabled="editPlayerForm.$error.required">
                                     Guardar
                                 </button>
                                 <button type="button" class="btn btn-default btn-danger" data-dismiss="modal"

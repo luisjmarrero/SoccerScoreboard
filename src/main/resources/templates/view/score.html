@@ -10,6 +10,13 @@
             <div class="container fsb-center" ng-init="onloadFun()">
                 <div class="row">
                     <div class="col-lg-12 text-center">
+
+                        <div class="alert alert-success"
+                             ng-show="vm.ended">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            <strong>El partido ha terminado</strong>
+                        </div>
+
                         <div class="panel panel-green">
 
                             <div class="panel-heading">
@@ -54,7 +61,8 @@
                                     data-target="#new_play"
                                     aria-label="Left Align"
                                     ng-show="vm.manual">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"/>
+                                <!--<span class="glyphicon glyphicon-plus" aria-hidden="true"/>-->
+                                Agregar jugada
                             </button>
                             <button type="button" class="btn btn-primary" ng-show="!vm.started"
                                     ng-click="startTimerWithTimeout()" aria-label="Left Align">
@@ -69,7 +77,7 @@
                             <button type="button" class="btn btn-default btn-danger" ng-show="vm.started"
                                     ng-click="vm.saveGame()" aria-label="Left Align">
                                 <!--<span class="glyphicon glyphicon-save" aria-hidden="true"/>-->
-                                Terminar Partido
+                                Volver a la pantalla principal
                             </button>
                         </div>
                     </div>
