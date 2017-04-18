@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -12,8 +13,10 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import tecnicas.software.model.Player;
 import tecnicas.software.model.Team;
 import tecnicas.software.repository.PlayerRepository;
+import tecnicas.software.repository.TeamRepository;
 import tecnicas.software.service.PlayerService;
 
+import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -25,12 +28,13 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class PlayerRestControllerTest {
 
+    List<Player> players;
     @Autowired
     PlayerService playerService;
     @Autowired
     PlayerRepository playerRepository;
-
-    List<Player> players;
+    @Autowired
+    TeamRepository teamRepository;
 
     @Before
     public void setUp() throws Exception {
@@ -39,54 +43,86 @@ public class PlayerRestControllerTest {
     @Test
     public void getAll() throws Exception {
         players = playerService.getAll();
+        final int EMPTY_SIZE = 0;
 
-        assertNotEquals(0, players.size());
+        assertNotEquals(EMPTY_SIZE, players.size());
     }
 
     @Test
-    //TODO: Implementar Sort para que ordene por team_id
     public void getAllOrdered() throws Exception{
-        //List<Player> playersOrderedByService = playerService.getAllOrderedByTeam();
+        players = playerService.getAllOrderedByTeam();
+        List<Player> playersSorted = playerRepository.findAll();
+
+        playersSorted.sort(Comparator.comparing(p -> p.getTeam().getTeam_id()));
+
+        for(int i = 0; i < players.size(); i++){
+            assertEquals(playersSorted.get(i).getTeam().getTeam_id(), players.get(i).getTeam().getTeam_id());
+        }
 
     }
 
     @Test
     public void getByTeam() throws Exception{
-        players = playerService.getByTeam(68);
+        final int REAL_MADRID_TEAM_ID = 68;
+        players = playerService.getByTeam(REAL_MADRID_TEAM_ID);
 
         for(Player player : players){
-            assertEquals(new Integer(68), player.getTeam().getTeam_id());
+            assertEquals(new Integer(REAL_MADRID_TEAM_ID), player.getTeam().getTeam_id());
         }
     }
 
     @Test
-    //TODO:
     public void getByNumber() throws Exception{
-        //Player player = playerService.getByNumber(70);
+        final int MESSI_SHIRT_NUMBER = 10;
+        players = playerService.getByNumber(MESSI_SHIRT_NUMBER);
+
+        if(players.get(0).getPlayer_id().intValue() == MESSI_SHIRT_NUMBER){
+            System.out.println("SUCCESFULLY!");
+        }
     }
 
     @Test
-    //FIXME: Arreglar el newTeam()
+    //FIXME: Problema con el field "on_field"
     public void create() throws Exception{
-        Player player = new Player("Samuel", "Eto'o", "Delantero", 48, new Team("FC Barcelona"));
+        final int BARCA_TEAM_ID = 69;
+        final int ETO_SHIRT_NUMBER = 48;
+        Team team = teamRepository.findOne(BARCA_TEAM_ID);
+        Player player = new Player("Samuel", "Eto'o", "Delantero", ETO_SHIRT_NUMBER, team);
 
-        playerService.create(player);
+        players = playerService.create(player);
 
-        for(Player tempPlayer : playerRepository.findAll()){
+        for(Player tempPlayer : players){
             if(tempPlayer.equals(player)){
-                System.out.println("Jugador creado exitosamente!");
+                System.out.println("SUCCESFULLY!");
                 playerRepository.delete(player);
             }
         }
     }
 
     @Test
+    //FIXME: Problema con hacer update!
     public void updateByNumber() throws Exception{
+        final int PLAYER_ID_TO_UPDATE = 70;
+        Player playerToUpdate = playerRepository.findOne(PLAYER_ID_TO_UPDATE);
 
+        System.out.println("BEFORE: " + playerToUpdate.getPosition());
+
+        playerToUpdate.setPosition("Arquero");
+
+        players = playerService.updateByNumber(playerToUpdate);
+
+        System.out.println("AFTER: " +playerRepository.getOne(PLAYER_ID_TO_UPDATE).getPosition());
     }
 
+    @Test
+    public void remove() throws Exception{
+        final int PLAYER_ID_TO_REMOVE = 70;
+        players = playerService.remove(PLAYER_ID_TO_REMOVE);
 
-
-
-
+        for(Player player : players){
+            if(playerRepository.findOne(PLAYER_ID_TO_REMOVE) != null){
+                System.out.println("FAILURE!");
+            }
+        }
+    }
 }
