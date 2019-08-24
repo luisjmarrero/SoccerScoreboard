@@ -4,6 +4,11 @@ This is project i made as part of a class when i was on collage using AngularJS,
 
 It's not well made at all, a was too young and had no experience but i left it here as it is as a reminder. Just added docker for the db and uploaded it to heroku on a free dyno.
 
+### Heroku deployment
+
+* Web App: https://soccer-score-board.herokuapp.com/
+* API: https://soccer-score-board.herokuapp.com/swagger-ui.html
+
 ### Funtional Details  
 
 - The application must correctly handle all the scoring scenarios and relevant plays of modern football (hand throws, corner kicks, goal kicks, passes, centers, punts, leading positions, etc.)

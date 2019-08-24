@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html data-th-fragment="base_layout(title)">
+<html data-th-fragment="base_layout(title)" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{resources/layout}"
+      >
+    <head>
 
 <head>
     <title id="pageTitle" data-th-text="${title}">Page title</title>

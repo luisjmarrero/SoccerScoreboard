@@ -34,17 +34,15 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.github.mxab.thymeleaf.extras/thymeleaf-extras-data-attribute
 	compile group: 'com.github.mxab.thymeleaf.extras', name: 'thymeleaf-extras-data-attribute', version: '2.0.1'
 
-	compile('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
-
 	// https://mvnrepository.com/artifact/org.webjars/angularjs
 	compile group: 'org.webjars', name: 'angularjs', version: '1.6.2'
 	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
-	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.6.1'
-	// https://mvnrepository.com/artifact/io.swagger/swagger-core
-	compile group: 'io.swagger', name: 'swagger-core', version: '1.5.13'
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	// https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-core
+	compile group: 'io.swagger.core.v3', name: 'swagger-core', version: '2.0.8'
 
-// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
-	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.6.1'
+	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 
 
 
