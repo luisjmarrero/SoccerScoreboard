@@ -1,12 +1,12 @@
 # SoccerScoreboard
 
-This is project i made as part of a class when i was on collage using AngularJS, Springboot and Postgres.
+This is a project I made as part of a class when I was in collage using AngularJS, Springboot and Postgres.
 
-It's not well made at all, a was too young and had no experience but i left it here as it is as a reminder. Just added docker for the db and uploaded it to heroku on a free dyno.
+It's not well made at all, I was too young and had no experience but I left it here as it is as a reminder. Just added docker for the db and uploaded it to heroku on a free dyno.
 
-### Heroku deployment
+### Heroku deployment (broken)
 
-* Web App: https://soccer-score-board.herokuapp.com/
+* Web App: https://soccer-score-board.herokuapp.com/ 
 * API: https://soccer-score-board.herokuapp.com/swagger-ui.html
 
 ### Funtional Details  
