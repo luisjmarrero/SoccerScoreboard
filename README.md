@@ -16,7 +16,7 @@ It's not well made at all, I was too young and had no experience but I left it h
 - The application that allows the capture of events that may affect a football match, so that at any given time it is possible to consult the history of the game, including its score
 - The application must allow saving the sequence of events that defined the game and then load that sequence for playback within the application
 
-#### Original on Spanish
+#### Original in Spanish
 
 ````
 - La aplicación deberá manejar correctamente todos los escenarios de puntuación y jugadas relevantes del fútbol moderno (saques de mano, tiros de esquina, saques de meta, pases, centros, despejes, posiciones adelantadas, etc.)
